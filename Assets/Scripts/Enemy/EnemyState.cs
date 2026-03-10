@@ -1,7 +1,6 @@
 ﻿using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 //유한 상태 머신
 

@@ -161,7 +161,7 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             _attackRoutine = StartCoroutine(AttackRoutine());
 			ChangeState(EnemyStateType.Attack);
@@ -170,7 +170,7 @@ public class Enemy : MonoBehaviour
 
     public void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             StopCoroutine(_attackRoutine);
             ChangeState(EnemyStateType.Normal);

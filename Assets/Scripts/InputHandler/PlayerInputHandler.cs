@@ -20,9 +20,4 @@ public class PlayerInputHandler : InputHandler
 	{
 		_inputVector = inputValue.Get<Vector2>();
 	}
-
-	public void OnClick(InputValue inputValue)
-	{
-		
-	}
 }
