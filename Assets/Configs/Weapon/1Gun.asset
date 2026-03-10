@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1697a2f99b6964a844ddacf96954d0, type: 3}
+  m_Name: 1Gun
+  m_EditorClassIdentifier: 
+  _weaponName: "\uCD1D"
+  _desc: "\uCD1D\uC744 \uC3F4 \uC6D0\uAC70\uB9AC\uC5D0\uC11C \uC801\uC744 \uC18C\uD0D5\uD569\uB2C8\uB2E4."
+  _iconSprite: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  _statDatas:
+  - _damage: 5
+    _shootingRange: 10
+    _rotSpeed: 0
+    _bulletCount: 3
+    _cooltime: 5
+    _speed: 5
+    _duration: 5
+    _fireDelay: 0.1
+    _attackCount: 2
+    _damageDelay: 0
+    _bulletRange: 0
+  - _damage: 10
+    _shootingRange: 20
+    _rotSpeed: 0
+    _bulletCount: 4
+    _cooltime: 4
+    _speed: 5
+    _duration: 5
+    _fireDelay: 0.1
+    _attackCount: 0
+    _damageDelay: 0
+    _bulletRange: 0
+  - _damage: 15
+    _shootingRange: 30
+    _rotSpeed: 0
+    _bulletCount: 5
+    _cooltime: 3
+    _speed: 5
+    _duration: 5
+    _fireDelay: 0.1
+    _attackCount: 0
+    _damageDelay: 0
+    _bulletRange: 0
