@@ -90,6 +90,8 @@ public class Upgrader : MonoBehaviour
 		//4. 업그레이드 패널 온, 게임 일시정지
 		_upgradePanel.SetActive(true);
 		Time.timeScale = 0;
+
+		_upgradeCount--;
 	}
 
 	/// <summary>
