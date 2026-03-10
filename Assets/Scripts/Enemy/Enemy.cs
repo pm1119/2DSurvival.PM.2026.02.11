@@ -161,6 +161,9 @@ public class Enemy : MonoBehaviour
         _hero.TakeHit(_enemyModel.Damage);
 	}
 
+    /// <summary>
+    /// 공격을 다루는 함수
+    /// </summary>
     public void HandleAttack()
     {
         float dist = Vector3.Distance(_hero.transform.position, transform.position);
