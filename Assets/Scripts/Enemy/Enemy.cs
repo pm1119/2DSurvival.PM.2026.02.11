@@ -154,47 +154,28 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	public void AttackTarget()
     {
-        Stop();
-
-        _heroRender.Animator.SetTrigger("OnAttacked");
+		_heroRender.Animator.SetTrigger("OnAttacked");
 
         _hero.TakeHit(_enemyModel.Damage);
 	}
 
-    /// <summary>
-    /// 공격을 다루는 함수
-    /// </summary>
-    public void HandleAttack()
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        float dist = Vector3.Distance(_hero.transform.position, transform.position);
-        if (dist < _minDist)
+        if (collision.gameObject.tag == "Player")
         {
-            ChangeState(EnemyStateType.Attack);
-        }
-        else
+            _attackRoutine = StartCoroutine(AttackRoutine());
+			ChangeState(EnemyStateType.Attack);
+		}
+    }
+
+    public void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
         {
             StopCoroutine(_attackRoutine);
             ChangeState(EnemyStateType.Normal);
         }
     }
-
-    //public void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        _attackRoutine = StartCoroutine(AttackRoutine());
-    //        ChangeState(EnemyStateType.Attack);
-    //    }
-    //}
-
-    //public void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        StopCoroutine(_attackRoutine);
-    //        ChangeState(EnemyStateType.Normal);
-    //    }
-    //}
 
     /// <summary>
     /// 사망 함수
@@ -224,11 +205,6 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
-	public void StartCoroutine()
-	{
-		_attackRoutine = StartCoroutine(AttackRoutine());
-	}
 }
 
 

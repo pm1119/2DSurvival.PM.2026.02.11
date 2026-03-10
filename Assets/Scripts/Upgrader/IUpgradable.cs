@@ -9,6 +9,7 @@ public interface IUpgradable
     string Desc { get; }
     Sprite IconSprite { get; }
     int Level { get; }
+    bool IsMaxLevel { get; }
 
     /// <summary>
     /// 업그레이드를 실행하는 함수

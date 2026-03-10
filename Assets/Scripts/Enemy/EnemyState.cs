@@ -106,7 +106,7 @@ public class AttackState : IEnemyState
 
 	public void Update()
 	{
-		_enemy.StartCoroutine();
+		
 	}
 }
 

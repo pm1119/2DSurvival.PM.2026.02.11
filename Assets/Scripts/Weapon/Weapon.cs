@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -24,6 +25,8 @@ public abstract class Weapon : MonoBehaviour, IUpgradable
 	public string Desc => _weaponData.Desc;
 
 	public Sprite IconSprite => _weaponData.IconSprite;
+
+	public bool IsMaxLevel => _level >= _weaponData.MaxLevel;
 
 	public abstract void Initialize();
 

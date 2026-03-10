@@ -54,7 +54,14 @@ public class Upgrader : MonoBehaviour
 	public void BeginSelection()
 	{
 		//1. 업그레이드 가능한 후보만 선별
-		List<IUpgradable> list = new List<IUpgradable>(_weapons);
+		List<IUpgradable> list = new ();
+		foreach (var weapon in _weapons)
+		{
+			if (weapon.IsMaxLevel == false)
+			{
+				list.Add(weapon);
+			}
+		}
 
 		//2. 업그레이드 가능한 후보군 셔플
 		for (int i = list.Count - 1; i > 0; i--)

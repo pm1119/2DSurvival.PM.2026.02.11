@@ -17,6 +17,8 @@ public class WeaponData : ScriptableObject
     public string Desc => _desc;
 
     public Sprite IconSprite => _iconSprite;
+
+    public int MaxLevel => _statDatas.Length - 1;
     
     /// <summary>
     /// 레벨에 따른 스탯 데이터를 반환하는 함수
