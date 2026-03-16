@@ -30948,6 +30948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd01c60cdd7056448dfa8becb3c256b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _data: {fileID: 11400000, guid: 32ee87f69cb16644ebf74894e4e7013f, type: 2}
   _heroModel: {fileID: 1530154088}
   _mover: {fileID: 1530154084}
   _heroRender: {fileID: 1988661327}
@@ -31043,11 +31044,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 1530154084}
-  _maxHp: 100
-  _currentHp: 100
+  _maxHp: 0
+  _currentHp: 0
   _currentExp: 0
-  _maxExp: 100
+  _maxExp: 0
+  _maxExpUpFactor: 0
   _level: 0
+  _speed: 0
 --- !u!114 &1530154089
 MonoBehaviour:
   m_ObjectHideFlags: 0
