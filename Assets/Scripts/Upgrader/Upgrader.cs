@@ -62,11 +62,6 @@ public class Upgrader : MonoBehaviour
 			{
 				list.Add(weapon);
 			}
-
-			if (weapon.IsMaxLevel == true)
-			{
-				list.Remove(weapon);
-			}
 		}
 
 		//2. 업그레이드 가능한 후보군 셔플
