@@ -9,7 +9,7 @@ public class CharacterModel : MonoBehaviour
 	[Header("----- 컴포넌트 -----")]
 	[SerializeField] Mover _mover;           //이동자
 
-	[Header("----- 런타임 데이터 -----")]
+	[Header("----- 피격 -----")]
 	[SerializeField] protected float _maxHp;          //최대 체력
 	[SerializeField] protected float _currentHp;      //현재 체력
 

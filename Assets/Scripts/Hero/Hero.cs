@@ -5,6 +5,9 @@
 /// </summary>
 public class Hero : MonoBehaviour
 {
+	[Header("----- 설정 데이터 -----")]
+	[SerializeField] HeroData _data;
+
     [Header("----- 컴포넌트 -----")]
 	[SerializeField] HeroModel _heroModel;
     [SerializeField] Mover _mover;
@@ -23,7 +26,7 @@ public class Hero : MonoBehaviour
 
 	public void Initialize()
 	{
-		_heroModel.Initialize();
+		_heroModel.Initialize(_data);
 	}
 
 	/// <summary>
