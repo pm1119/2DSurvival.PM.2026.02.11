@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 /// <summary>
@@ -9,7 +10,7 @@ public class Upgrader : MonoBehaviour
     [Header("----- 컴포넌트 -----")]			
     [SerializeField] Weapon[] _weapons;             //무기 배열
 	[SerializeField] UpgradeView[] _upgradeViews;   //업그레이드 뷰 배열
-	[SerializeField] GameObject _upgradePanel;      //업그레이드 패널\
+	[SerializeField] GameObject _upgradePanel;      //업그레이드 패널
 
 	int _upgradeCount = 0;							//업그레이드 카운트
 
@@ -61,6 +62,11 @@ public class Upgrader : MonoBehaviour
 			{
 				list.Add(weapon);
 			}
+
+			if (weapon.IsMaxLevel == true)
+			{
+				list.Remove(weapon);
+			}
 		}
 
 		//2. 업그레이드 가능한 후보군 셔플
@@ -87,9 +93,12 @@ public class Upgrader : MonoBehaviour
 			}
 		}
 
-		//4. 업그레이드 패널 온, 게임 일시정지
-		_upgradePanel.SetActive(true);
-		Time.timeScale = 0;
+		if (list.Count > 0)
+		{
+			//4. 업그레이드 패널 온, 게임 일시정지
+			_upgradePanel.SetActive(true);
+			Time.timeScale = 0;
+		}
 
 		_upgradeCount--;
 	}

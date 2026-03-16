@@ -6,6 +6,7 @@ public class HeroModel : CharacterModel
 	[Header("----- 경험치 -----")]
 	[SerializeField] float _currentExp;
 	[SerializeField] float _maxExp;
+	[SerializeField] float _maxExpUpFactor;
 	[SerializeField] int _level;
 
 	/// <summary>
@@ -37,6 +38,8 @@ public class HeroModel : CharacterModel
 
 			//레벨업
 			_level++;
+
+			_maxExp *= _maxExpUpFactor;
 		}
 
 		//레벨 변경 이벤트 발행
