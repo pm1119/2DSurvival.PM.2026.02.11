@@ -74,7 +74,6 @@ public class Upgrader : MonoBehaviour
 		}
 
 		//3. 그 중 최대 3개만 UI에 표시
-
 		for (int i = 0; i < _upgradeViews.Length; i++)
 		{
 			if (i < list.Count)
