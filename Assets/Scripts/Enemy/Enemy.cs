@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     IEnemyState _state;                     //현재 상태 객체(를 가리키는 인터페이스 변수)
     IEnemyState[] _enemyStates;        //상태 객체 배열
 
+    public event UnityAction<Enemy> OnDead;
+
     Coroutine _attackRoutine;
 
     float _timer;                            //타이머
@@ -196,6 +198,9 @@ public class Enemy : MonoBehaviour
 
         // 플레이어 캐릭터(주인공) 경험치 획득
         _hero.AddExp(_enemyModel.ExpReward);
+
+        //사망 이벤트 발행
+        OnDead?.Invoke(this);
 	}
 
 	/// <summary>

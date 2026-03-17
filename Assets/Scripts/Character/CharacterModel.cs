@@ -48,4 +48,12 @@ public class CharacterModel : MonoBehaviour
 			OnDead?.Invoke();
 		}
 	}
+
+	/// <summary>
+	/// 체력 변경 이벤트 발행용 함수
+	/// </summary>
+	public void InvokeHpChanged()
+	{
+		OnHpChanged?.Invoke(_currentHp, _maxHp);
+	}
 }

@@ -22,7 +22,7 @@ public class HeroData : ScriptableObject
     /// <returns></returns>
     public float GetExp(int level)
     {
-        if (level < 0)
+        if (level <= 0)
             return _baseExp;
         return _baseExp * Mathf.Pow(_expIncrementRate, level);
     }

@@ -15,12 +15,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] StatusView _statusView;
 
     [Header("----- 런타임 데이터 -----")]
-    [SerializeField] Enemy _enemy;
-
+    [SerializeField] int _killCount;            //킬 수
+    [SerializeField] float _playTime;           //플레이 시간 
     [SerializeField] float _minRadius;          //생성 범위 안쪽 원 반지름
     [SerializeField] float _maxRadius;          //생성 범위 바깥쪽 원 반지름
     [SerializeField] float _spawnSpan;          //생성 간격 시간(초)
     [SerializeField] float _distance;
+
+    public event UnityAction<int> OnKillCountChanged;       //킬 수 변경 이벤트
 
 	Coroutine _spawnEnemyCoroutine;             //적 생성 코루틴 변수
 
@@ -28,6 +30,9 @@ public class EnemySpawner : MonoBehaviour
     {
         //코루틴 실행
 		_spawnEnemyCoroutine = StartCoroutine(SpawnEnemyRoutine());
+
+        //킬 수 변경 이벤트 발행
+        OnKillCountChanged?.Invoke(_killCount);
     }
 
     /// <summary>
@@ -56,6 +61,9 @@ public class EnemySpawner : MonoBehaviour
 
         //생성 위치 적용
         enemy.transform.position = pos;
+
+        //생성된 적 사망 이벤트 구독
+        enemy.OnDead += HandleEnemyDead;
 
 		//생성된 적 초기화
 		enemy.Initialize(_hero, this);
@@ -88,6 +96,19 @@ public class EnemySpawner : MonoBehaviour
         pos.y += dir.y * radius;
 
         return pos;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="enemy"></param>
+    public void HandleEnemyDead(Enemy enemy)
+    {
+        //킬 수 증가
+        _killCount++;
+
+        //킬 수 증가 이벤트 발행
+        OnKillCountChanged?.Invoke(_killCount);
     }
 
 	private void OnDrawGizmosSelected()

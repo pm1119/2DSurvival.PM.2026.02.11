@@ -9,15 +9,22 @@ public class PlayScene : MonoBehaviour
     [SerializeField] Hero _hero;                    //플레이어 캐릭터
     [SerializeField] PlayerInputHandler _inputHandler;    //입력 핸들러
 	[SerializeField] EnemySpawner _enemySpawner;    //적 생성기
+	[SerializeField] StatusView _statusView;
 
 	private void Awake()
 	{
 		//이동 입력 이벤트 구독
 		_inputHandler.OnMoveInput += HandleMoveInput;
+
+		//킬 수 변경 이벤트 구독
+		_enemySpawner.OnKillCountChanged += _statusView.UpdateKillCount;
 	}
 
 	private void Start()
 	{
+		//플레이어 캐릭터 모델 초기화
+		_hero.Initialize();
+
 		//적 생성기 초기화
 		_enemySpawner.Initialize();
 	}

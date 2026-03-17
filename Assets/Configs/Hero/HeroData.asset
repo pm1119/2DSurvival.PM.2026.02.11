@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _baseHp: 100
   _speed: 3
-  _baseExp: 10
+  _baseExp: 100
   _expIncrementRate: 1.5

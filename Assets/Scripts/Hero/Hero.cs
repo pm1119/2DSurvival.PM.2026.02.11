@@ -6,22 +6,32 @@
 public class Hero : MonoBehaviour
 {
 	[Header("----- 설정 데이터 -----")]
-	[SerializeField] HeroData _data;
+	[SerializeField] HeroData _data;					//설정 데이터
 
     [Header("----- 컴포넌트 -----")]
-	[SerializeField] HeroModel _heroModel;
-    [SerializeField] Mover _mover;
-	[SerializeField] HeroRender _heroRender;
-	[SerializeField] CharacterView _characterView;
-	[SerializeField] Upgrader _upgrader;
+	[SerializeField] HeroModel _heroModel;				//런타임 데이터
+    [SerializeField] Mover _mover;						//이동자
+	[SerializeField] HeroRender _heroRender;			//애니메이터 핸들러
+	[SerializeField] CharacterView _characterView;		//HUD(체력바)
+	[SerializeField] Upgrader _upgrader;				//업그레이드 담당
+	[SerializeField] StatusView _statusView;			//PlayScene 상태 뷰
 
 	public void Awake()
 	{
+		//이동 이벤트 구독
 		_mover.OnMoved += _heroRender.HandleMoved;
 
+		//체력 변경 이벤트 구독
 		_heroModel.OnHpChanged += _characterView.UpdateHpBar;
 
-		_heroModel.OnLevelChanged += _upgrader.HandleLevelUp;
+		//레벨 변경 이벤트 구독
+		_heroModel.OnLevelChanged += HandleLevelChanged;
+
+		//이동 속력 변경 이벤트 구독
+		_heroModel.OnSpeedChanged += _mover.SetSpeed;
+
+		//경험치 변경 이벤트 구독
+		_heroModel.OnExpChanged += _statusView.UpdateExp;
 	}
 
 	public void Initialize()
@@ -46,5 +56,11 @@ public class Hero : MonoBehaviour
 	public void AddExp(float amount)
 	{
 		_heroModel.AddExp(amount);
+	}
+
+	public void HandleLevelChanged(int prelevel, int level)
+	{
+		_upgrader.HandleLevelUp(prelevel, level);
+		_statusView.UpdateLevel(level);
 	}
 }

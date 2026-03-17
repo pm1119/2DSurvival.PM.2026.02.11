@@ -38,6 +38,11 @@ public class HeroModel : CharacterModel
 		_currentHp = _maxHp;
 		_speed = _heroData.Speed;
 		_maxExp = _heroData.GetExp(_level);
+
+		InvokeHpChanged();
+		OnSpeedChanged?.Invoke(_speed);
+		OnExpChanged?.Invoke(_currentExp, _maxExp);
+		OnLevelChanged?.Invoke(_level, _level);
 	}
 
 	/// <summary>
@@ -60,7 +65,8 @@ public class HeroModel : CharacterModel
 			//레벨업
 			_level++;
 
-			_maxExp *= _maxExpUpFactor;
+			//경험치 재계산
+			_maxExp = _heroData.GetExp(_level);
 		}
 
 		//레벨 변경 이벤트 발행
