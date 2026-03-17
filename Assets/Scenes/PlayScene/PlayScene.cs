@@ -18,6 +18,8 @@ public class PlayScene : MonoBehaviour
 
 		//킬 수 변경 이벤트 구독
 		_enemySpawner.OnKillCountChanged += _statusView.UpdateKillCount;
+
+		_enemySpawner.OnTimeClosed += _statusView.UpdateRemainingTime;
 	}
 
 	private void Start()

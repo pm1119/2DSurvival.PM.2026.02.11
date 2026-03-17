@@ -22,17 +22,26 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _spawnSpan;          //생성 간격 시간(초)
     [SerializeField] float _distance;
 
+    public event UnityAction<float> OnTimeClosed;
+
     public event UnityAction<int> OnKillCountChanged;       //킬 수 변경 이벤트
 
 	Coroutine _spawnEnemyCoroutine;             //적 생성 코루틴 변수
+
+    Coroutine _playTimeRoutine;
 
 	public void Initialize()
     {
         //코루틴 실행
 		_spawnEnemyCoroutine = StartCoroutine(SpawnEnemyRoutine());
 
+        _playTimeRoutine = StartCoroutine(PlayTimeRoutine());
+
         //킬 수 변경 이벤트 발행
         OnKillCountChanged?.Invoke(_killCount);
+
+        //시간 변경 이벤트 발행
+        OnTimeClosed?.Invoke(_playTime);
     }
 
     /// <summary>
@@ -45,6 +54,16 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(_spawnSpan);
             SpawnEnemy();
+        }
+    }
+
+    IEnumerator PlayTimeRoutine()
+    {
+        while (true)
+        {
+            _playTime -= Time.deltaTime;
+            yield return null;
+            OnTimeClosed?.Invoke(_playTime);
         }
     }
 

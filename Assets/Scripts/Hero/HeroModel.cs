@@ -77,4 +77,39 @@ public class HeroModel : CharacterModel
 		//경험치 변경 이벤트 발행
 		OnExpChanged?.Invoke(_currentExp, _maxExp);
 	}
+
+	/// <summary>
+	/// 체력 보너스를 설정하는 함수
+	/// </summary>
+	/// <param name="amount"></param>
+	public void SetHpBonus(float amount)
+	{
+		_maxHp += _heroData.BaseHp + amount;
+		_currentHp = _currentHp + amount;
+
+		//체력 변경 이벤트 발행
+		InvokeHpChanged();
+	}
+
+	/// <summary>
+	/// 이동 속력 증가 계수를 설정하는 함수
+	/// </summary>
+	/// <param name="rate"></param>
+	public void SetSpeedMultiplier(float rate)
+	{
+		_speed = _heroData.Speed * (1 + rate);
+
+		//이동 속력 변경 이벤트 발행
+		OnSpeedChanged?.Invoke(_speed);
+	}
+
+	/// <summary>
+	/// 체력 회복 함수
+	/// </summary>
+	public void Recover()
+	{
+		_currentHp = _maxHp;
+
+		InvokeHpChanged();
+	}
 }

@@ -8,14 +8,19 @@ using UnityEngine;
 public class Upgrader : MonoBehaviour
 {
     [Header("----- 컴포넌트 -----")]			
-    [SerializeField] Weapon[] _weapons;             //무기 배열
 	[SerializeField] UpgradeView[] _upgradeViews;   //업그레이드 뷰 배열
 	[SerializeField] GameObject _upgradePanel;      //업그레이드 패널
+
+	IUpgradable[] _upgradables;						//업그레이드 가능한 객체 배열
 
 	int _upgradeCount = 0;							//업그레이드 카운트
 
 	private void Awake()
 	{
+		//본인과 자식 게임오브젝트들에서
+		//IUpgradable을 구현하는 모든 컴포넌트를 배열로 가져온다
+		_upgradables = GetComponentsInChildren<IUpgradable>();
+
 		foreach (var view in _upgradeViews) 
 		{
 			//업그레이드 완료 이벤트 구독
@@ -28,16 +33,16 @@ public class Upgrader : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1) == true)
 		{
-			BeginSelection();
+			_upgradables[0].Upgrade();
 		}
 		else if (Input.GetKeyDown(KeyCode.Alpha2) == true)
 		{
-			EndSelection();
+			_upgradables[1].Upgrade();
 		}
-		//else if(Input.GetKeyDown(KeyCode.Alpha3) == true)
-		//{
-		//	_weapons[2].Upgrade();
-		//}
+		else if (Input.GetKeyDown(KeyCode.Alpha3) == true)
+		{
+			_upgradables[2].Upgrade();
+		}
 	}
 
 	public void HandleLevelUp(int prelevel, int level)
@@ -56,11 +61,11 @@ public class Upgrader : MonoBehaviour
 	{
 		//1. 업그레이드 가능한 후보만 선별
 		List<IUpgradable> list = new ();
-		foreach (var weapon in _weapons)
+		foreach (var upgradables in _upgradables)
 		{
-			if (weapon.IsMaxLevel == false)
+			if (upgradables.IsMaxLevel == false)
 			{
-				list.Add(weapon);
+				list.Add(upgradables);
 			}
 		}
 
