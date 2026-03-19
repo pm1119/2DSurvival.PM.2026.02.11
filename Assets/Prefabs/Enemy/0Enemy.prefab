@@ -152,7 +152,7 @@ MonoBehaviour:
   _maxHp: 30
   _currentHp: 30
   _damage: 10
-  _expReward: 30
+  _expReward: 100
 --- !u!1 &1379821038614838425
 GameObject:
   m_ObjectHideFlags: 0

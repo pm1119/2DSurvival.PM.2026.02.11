@@ -10,6 +10,7 @@ public class Upgrader : MonoBehaviour
     [Header("----- 컴포넌트 -----")]			
 	[SerializeField] UpgradeView[] _upgradeViews;   //업그레이드 뷰 배열
 	[SerializeField] GameObject _upgradePanel;      //업그레이드 패널
+	[SerializeField] UpgradeProduction _upgradeProduction;
 
 	IUpgradable[] _upgradables;						//업그레이드 가능한 객체 배열
 
@@ -95,7 +96,7 @@ public class Upgrader : MonoBehaviour
 		if (list.Count > 0)
 		{
 			//4. 업그레이드 패널 온, 게임 일시정지
-			_upgradePanel.SetActive(true);
+			_upgradeProduction.PopUp();
 			Time.timeScale = 0;
 		}
 
@@ -114,7 +115,7 @@ public class Upgrader : MonoBehaviour
 		}
 		else
 		{
-			_upgradePanel.SetActive(false);
+			_upgradeProduction.PopDown();
 			Time.timeScale = 1.0f;
 		}
 	}

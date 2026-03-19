@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,8 +10,16 @@ public class CharacterView : MonoBehaviour
 	[Header("----- ÄÄÆ÷³ÍÆ® -----")]
 	[SerializeField] Image _hpBar;
 
+	Tween _hpTween;
+
+	float _hpTweenDuration = 1f;
+
 	public void UpdateHpBar(float currentHp, float maxHp)
 	{
-		_hpBar.fillAmount = currentHp / maxHp;
+		float fillAmount = currentHp / maxHp;
+
+		_hpTween = _hpBar
+			.DOFillAmount(fillAmount, _hpTweenDuration)
+			.SetEase(Ease.OutCubic);
 	}
 }

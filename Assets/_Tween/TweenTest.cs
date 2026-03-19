@@ -13,7 +13,7 @@ public class TweenTest : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.C) == true)
+        if (Input.GetKeyDown(KeyCode.C) == true)
         {
             StartMoveRoutine();
         }
@@ -21,13 +21,21 @@ public class TweenTest : MonoBehaviour
         {
             StartMoveTween();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha1) == true)
+        else if (Input.GetKeyDown(KeyCode.Alpha1) == true)
         {
             StartRotateTween();
         }
-        else if(Input.GetKeyDown(KeyCode.Alpha2) == true)
+        else if (Input.GetKeyDown(KeyCode.Alpha2) == true)
         {
             StarSequenceTween();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3) == true)
+        {
+            StartLoopTween();
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4) == true)
+        {
+            StopTween();
         }
 	}
 
@@ -81,5 +89,25 @@ public class TweenTest : MonoBehaviour
     void LogMessage()
     {
         Debug.Log("시퀀스 종료");
+    }
+
+	public void StartLoopTween()
+	{
+		_tween = transform.DOMoveY(transform.position.y + 2, _duration)
+			.SetLoops(-1, LoopType.Yoyo);
+	}
+
+    public void StopTween()
+    {
+        if ( _tween != null )
+        {
+            if (_tween.IsPlaying() == true)
+            {
+                Debug.Log("트윈 실행 중");
+            }
+        }
+
+        _tween?.Kill();
+        _tween = null;
     }
 }
