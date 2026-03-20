@@ -96,8 +96,9 @@ public class Upgrader : MonoBehaviour
 		if (list.Count > 0)
 		{
 			//4. 업그레이드 패널 온, 게임 일시정지
+			_upgradePanel.SetActive(true);
 			_upgradeProduction.PopUp();
-			Time.timeScale = 0;
+            Time.timeScale = 0;
 		}
 
 		_upgradeCount--;
@@ -115,8 +116,9 @@ public class Upgrader : MonoBehaviour
 		}
 		else
 		{
+			_upgradePanel.SetActive(false);	
 			_upgradeProduction.PopDown();
-			Time.timeScale = 1.0f;
+            Time.timeScale = 1.0f;
 		}
 	}
 }

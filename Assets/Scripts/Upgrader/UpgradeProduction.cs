@@ -7,20 +7,38 @@ public class UpgradeProduction : MonoBehaviour
 	[SerializeField] RectTransform _rectTransform;
 	[SerializeField] float _popUpDuration;
 
-	Tween _popUpTween;
+	Vector3 _upgradeOriginScale;
+	Vector3 _upgradeHighlightScale = new Vector3(1, 1, 1);	
+
+	//Tween _popUpTween;
+
+	Sequence _upgradeSequence;
 
 	private void Awake()
 	{
-		_rectTransform.localScale = Vector3.zero;
+		_upgradeOriginScale = _rectTransform.localScale;
 	}
 
 	public void PopUp()
 	{
-		_popUpTween = _rectTransform.DOScale(Vector3.one, _popUpDuration);
+		_rectTransform.localScale = _upgradeOriginScale;
+
+		_upgradeSequence?.Kill();
+
+		_upgradeSequence = DOTween.Sequence();
+        _upgradeSequence.SetUpdate(true);
+
+        _upgradeSequence.Append(_rectTransform.DOScale(_upgradeHighlightScale, _popUpDuration));
 	}
 
 	public void PopDown()
 	{
-		_popUpTween = _rectTransform.DOScale(Vector3.zero, _popUpDuration);
-	}
+		_rectTransform.localScale = _upgradeHighlightScale;
+
+		_upgradeSequence?.Kill();
+
+		_upgradeSequence = DOTween.Sequence();
+
+        _upgradeSequence.Append(_rectTransform.DOScale(_upgradeOriginScale, _popUpDuration));
+    }
 }
