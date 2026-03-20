@@ -149,10 +149,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mover: {fileID: 6735779962057948090}
-  _maxHp: 30
-  _currentHp: 30
-  _damage: 10
-  _expReward: 100
+  _maxHp: 0
+  _currentHp: 0
+  _damage: 0
+  _expReward: 0
+  _baseDamage: 10
+  _baseHp: 30
+  _baseExp: 30
 --- !u!1 &1379821038614838425
 GameObject:
   m_ObjectHideFlags: 0
