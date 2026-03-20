@@ -23,17 +23,19 @@ public class StatusView : MonoBehaviour
 	Tween _expBarTween;                                 //경험치 바 트윈
 
     Sequence _killCountSequence;                        //킬 수 시퀀스
-
     Sequence _remainingTimeSequence;                    //플레이 타임 시퀀스
+    Sequence _levelSequence;
 
     Color _killOriginColor;                             //킬 수 텍스트 초기 색상
-    Vector3 _killOrigonScale;                           //킬 수 텍스트 초기 스케일
+    Color _remainingOriginColor;                             //킬 수 텍스트 초기 색상
+    Color _levelOriginColor;
 
-	Color _remainingOriginColor;                             //킬 수 텍스트 초기 색상
+    Vector3 _killOrigonScale;                           //킬 수 텍스트 초기 스케일
 
 	private void Awake()
 	{
 		_killOriginColor = _killCount.color;
+        _levelOriginColor = _levelText.color;
         _killOrigonScale = _killCount.rectTransform.localScale;
         _remainingOriginColor = _remainingTimeText.color;
 	}
@@ -62,6 +64,16 @@ public class StatusView : MonoBehaviour
     public void UpdateLevel(int level)
     {
         _levelText.text = (level + 1).ToString();
+
+        _levelSequence?.Kill();
+
+        _levelSequence = DOTween.Sequence();
+        _levelSequence.SetUpdate(true);
+
+        _levelSequence.Append(_levelText.DOColor(Color.yellow, _killSeqDuration));
+        _levelSequence.Join(_levelText.rectTransform.DOScale(_killSeqScale, _killSeqDuration));
+        _levelSequence.Append(_levelText.DOColor(_levelOriginColor, _killSeqDuration));
+        _levelSequence.Join(_levelText.rectTransform.DOScale(_killOrigonScale, _killSeqDuration));
     }
 
     public void UpdateKillCount(int killCount)
