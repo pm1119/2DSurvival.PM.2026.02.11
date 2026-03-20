@@ -33,8 +33,12 @@ public class UpgradeView : MonoBehaviour
         _icon.sprite = _upgradable.IconSprite;
         _nameText.text = _upgradable.UpgradeName;
         _discText.text = _upgradable.Desc;
-        _levelText.text = $"- Level {_upgradable.Level + 2}";
-    }
+        if (_upgradable.Level >= -1)
+			_levelText.text = $"- Level {_upgradable.Level + 2}";
+        //-2 이하 레벨인 경우 레벨 표시 생략
+        else
+            _levelText.text =string.Empty;
+	}
 
     /// <summary>
     /// 클릭되었을 때를 다루는 함수

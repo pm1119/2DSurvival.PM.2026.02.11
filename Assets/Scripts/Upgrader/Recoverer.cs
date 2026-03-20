@@ -21,7 +21,7 @@ public class Recoverer : MonoBehaviour, IUpgradable
 
 	public bool IsMaxLevel => false;
 
-	public int Level => 0;
+	public int Level => int.MinValue;
 
 	public void Upgrade()
 	{

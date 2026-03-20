@@ -6,10 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameSettings/GearData")]
 public class GearData : ScriptableObject
 {
-    [SerializeField] string _gearName;      //장비 이름
-    [SerializeField] float[] _levelValues;  //레벨별 스탯 배열
+    [SerializeField] string _gearName;                      //장비 이름
+    [SerializeField] float[] _levelValues;                  //레벨별 스탯 배열
     [TextArea(3, 5)][SerializeField] string _desc;          //설명
-    [SerializeField] Sprite _iconSprite;    //아이콘 스프라이트
+    [SerializeField] Sprite _iconSprite;                    //아이콘 스프라이트
 
     public string GearName => _gearName;
 

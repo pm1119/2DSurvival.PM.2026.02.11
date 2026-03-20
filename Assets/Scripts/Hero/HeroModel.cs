@@ -84,8 +84,11 @@ public class HeroModel : CharacterModel
 	/// <param name="amount"></param>
 	public void SetHpBonus(float amount)
 	{
+		//기존 체력 비율 계산
+		float ratio = _currentHp / _maxHp;
+
 		_maxHp += _heroData.BaseHp + amount;
-		_currentHp = _currentHp + amount;
+		_currentHp = _maxHp * ratio;
 
 		//체력 변경 이벤트 발행
 		InvokeHpChanged();
