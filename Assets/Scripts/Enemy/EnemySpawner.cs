@@ -7,11 +7,15 @@ using UnityEngine.Events;
 /// </summary>
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("----- 설정 데이터 -----")]
+    [SerializeField] StageData _stageData;      //스테이지 데이터
+    [SerializeField] WaveData _waveData;                         //현재 웨이브 데이터
+
     [Header("----- 스폰 기준 -----")]
     [SerializeField] Hero _hero;                //플레이어 캐릭터
 
     [Header("----- 리소스 -----")]
-    [SerializeField] Enemy _enemyPrefab;        //적 캐릭터
+    [SerializeField] Enemy[] _enemyPrefabs;        //적 캐릭터 배열
     [SerializeField] StatusView _statusView;
 
     [Header("----- 런타임 데이터 -----")]
@@ -22,26 +26,25 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _spawnSpan;          //생성 간격 시간(초)
     [SerializeField] float _distance;
 
-    public event UnityAction<float> OnTimeClosed;
+    public event UnityAction<float> OnRemainingTimeChanged;
 
     public event UnityAction<int> OnKillCountChanged;       //킬 수 변경 이벤트
 
 	Coroutine _spawnEnemyCoroutine;             //적 생성 코루틴 변수
 
-    Coroutine _playTimeRoutine;
+    Coroutine _playTimeRoutine;                 //현재 웨이브 계산 코루틴 변수
 
 	public void Initialize()
     {
         //코루틴 실행
 		_spawnEnemyCoroutine = StartCoroutine(SpawnEnemyRoutine());
-
         _playTimeRoutine = StartCoroutine(PlayTimeRoutine());
 
         //킬 수 변경 이벤트 발행
         OnKillCountChanged?.Invoke(_killCount);
 
-        //시간 변경 이벤트 발행
-        OnTimeClosed?.Invoke(_playTime);
+		//시간 변경 이벤트 발행
+		OnRemainingTimeChanged?.Invoke(_playTime);
     }
 
     /// <summary>
@@ -61,9 +64,19 @@ public class EnemySpawner : MonoBehaviour
     {
         while (true)
         {
-            _playTime -= Time.deltaTime;
+            _playTime += Time.deltaTime;
+            //현재 플레이 시간에 맞는 웨이브 데이터 가져오기
+            _waveData = _stageData.GetWaveData(_playTime);
+            _spawnSpan = _waveData.SpawnSpan;
+
+            //남은 시간 계산
+            float reaminingTime = _stageData.PlayTime - _playTime;
+			OnRemainingTimeChanged?.Invoke(reaminingTime);
+			if (reaminingTime <= 0)
+            {
+                StopAllCoroutines();
+            }
             yield return null;
-            OnTimeClosed?.Invoke(_playTime);
         }
     }
 
@@ -72,8 +85,11 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     void SpawnEnemy()
     {
+        //랜덤한 적 프리팹 선택
+        Enemy enemyPrefab = _enemyPrefabs[_waveData.GetRandomEnemyIndex()];
+
 		//_enemyPrefab 복제 생성
-		Enemy enemy = Instantiate(_enemyPrefab, transform);
+		Enemy enemy = Instantiate(enemyPrefab, transform);
 
         //생성 위치 구하기
         Vector3 pos = GetSpawnPosition();
@@ -85,7 +101,7 @@ public class EnemySpawner : MonoBehaviour
         enemy.OnDead += HandleEnemyDead;
 
 		//생성된 적 초기화
-		enemy.Initialize(_hero, this);
+		enemy.Initialize(_hero, this, _waveData);
 
 		float reX = _hero.transform.position.x - enemy.transform.position.x;
 		float reY = _hero.transform.position.y - enemy.transform.position.y;

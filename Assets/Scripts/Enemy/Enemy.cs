@@ -45,10 +45,12 @@ public class Enemy : MonoBehaviour
         _enemyModel.OnDead += Die;
 	}
 
-    public void Initialize(Hero hero, EnemySpawner spawner)
+    public void Initialize(Hero hero, EnemySpawner spawner, WaveData waveData)
     {
         _hero = hero;
         _spawner = spawner;
+
+        _enemyModel.Initialize(waveData);
 
         _enemyStates = new IEnemyState[]
         {
