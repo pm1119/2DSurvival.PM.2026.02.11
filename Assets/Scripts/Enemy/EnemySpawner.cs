@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,8 +16,10 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Hero _hero;                //플레이어 캐릭터
 
     [Header("----- 리소스 -----")]
+    [SerializeField] HeroModel _heroModel;
     [SerializeField] Enemy[] _enemyPrefabs;        //적 캐릭터 배열
-    [SerializeField] StatusView _statusView;
+    [SerializeField] ExpItem[] _expItemPrefabs;    //경험치 아이템 배열
+    [SerializeField] HealthItem _healthItemPrefab;       //체력 아이템
 
     [Header("----- 런타임 데이터 -----")]
     [SerializeField] int _killCount;            //킬 수
@@ -25,14 +28,20 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _maxRadius;          //생성 범위 바깥쪽 원 반지름
     [SerializeField] float _spawnSpan;          //생성 간격 시간(초)
     [SerializeField] float _distance;
+	[SerializeField] int _hpItemDropRate;
 
-    public event UnityAction<float> OnRemainingTimeChanged;
+	public event UnityAction<float> OnRemainingTimeChanged;
 
     public event UnityAction<int> OnKillCountChanged;       //킬 수 변경 이벤트
 
 	Coroutine _spawnEnemyCoroutine;             //적 생성 코루틴 변수
 
     Coroutine _playTimeRoutine;                 //현재 웨이브 계산 코루틴 변수
+
+    /// <summary>
+    /// 생성한 경험치 아이템 리스트
+    /// </summary>
+    [SerializeField] List<ExpItem> _expItems = new List<ExpItem>();
 
 	public void Initialize()
     {
@@ -144,6 +153,74 @@ public class EnemySpawner : MonoBehaviour
 
         //킬 수 증가 이벤트 발행
         OnKillCountChanged?.Invoke(_killCount);
+
+        //경험치 아이템 생성 확률 판정
+        if (Random.value < _waveData.ExpItemDropRate)
+        {
+			//경험치 생성
+			SpawnExpItem(enemy.transform.position);
+		}
+
+        if (Random.value < _hpItemDropRate)
+        {
+            SpawnHpItem(enemy.transform.position);
+        }
+    }
+
+    /// <summary>
+    /// 경험치 아이템을 스폰하는 함수
+    /// </summary>
+    /// <param name="pos"></param>
+    public void SpawnExpItem(Vector3 pos)
+    {
+        //랜덤 인덱스 생성
+        int index = Random.Range(0, _waveData.GetRandomExpItemIndex());
+
+        //프리팹 선택
+        ExpItem prefab = _expItemPrefabs[index];
+
+        //복제본 생성
+        ExpItem expItem = Instantiate(prefab);
+
+        //위치 설정
+        expItem.transform.position = pos;
+
+        //경험치 아이템 제거 이벤트 구독
+        expItem.OnRemoved += HandleExpItemRemoved;
+
+        //초기화
+        expItem.Initialize(_hero);
+
+        //생성된 경험치 아이템을 리스트에 추가
+        _expItems.Add(expItem);
+    }
+
+    public void SpawnHpItem(Vector3 pos)
+    {
+        int index = Random.Range(0, _hpItemDropRate);
+
+        HealthItem healthItem = _healthItemPrefab;
+
+        healthItem.transform.position = pos;
+
+        healthItem.Initialize(_heroModel);
+    }
+
+    [ContextMenu("자석 아이템 효과 발동")]
+    /// <summary>
+    /// 자석 아이템 효과를 실행하는 함수
+    /// </summary>
+    public void StartMagnetEffect()
+    {
+        foreach (var item in _expItems)
+        {
+            item.StartMagnetRoutine();
+        }
+    }
+
+    public void HandleExpItemRemoved(ExpItem expItem)
+    {
+        _expItems.Remove(expItem);
     }
 
 	private void OnDrawGizmosSelected()

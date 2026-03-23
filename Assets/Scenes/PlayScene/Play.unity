@@ -31094,6 +31094,93 @@ MonoBehaviour:
   - {fileID: 1368637764}
   _upgradePanel: {fileID: 526797468}
   _upgradeProduction: {fileID: 526797474}
+--- !u!1 &1556062760
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1556062761}
+  - component: {fileID: 1556062762}
+  m_Layer: 6
+  m_Name: Shadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1556062761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556062760}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1988661322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1556062762
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1556062760}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 10
+  m_Sprite: {fileID: 1304559308, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.5555556, y: 0.33333334}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1611767027
 GameObject:
   m_ObjectHideFlags: 0
@@ -35623,20 +35710,29 @@ MonoBehaviour:
     _damageRate: 0
     _hpRate: 0
     _expRate: 0
+    _expItemDropRate: 0
+    _expItemRates: []
   _hero: {fileID: 1530154083}
+  _heroModel: {fileID: 1530154088}
   _enemyPrefabs:
   - {fileID: 3973251100775325545, guid: ccb8215fb4eda3b4c81b318151e88524, type: 3}
   - {fileID: 3815734014136340430, guid: e7b4ae13d9e16f94fbfdb05358312bc5, type: 3}
   - {fileID: 3186414267893165432, guid: 6b46b74ade02f124b88db2e8c7f442e7, type: 3}
   - {fileID: 8982545360510601823, guid: 450e943317f1a60468b71994ee1032b8, type: 3}
   - {fileID: 2421252746640133104, guid: a3d3d531a7304ca4c9b4d722e408860d, type: 3}
-  _statusView: {fileID: 7422667546939988417}
+  _expItemPrefabs:
+  - {fileID: 4572947229975138250, guid: 72197ba65bdfd27489f4dc7228bc8dfd, type: 3}
+  - {fileID: 8641958260357519674, guid: a80bc947a0bfe4342848a3a0bdb42763, type: 3}
+  - {fileID: 65809281677102979, guid: 5aa2094f40311a6468f315be151762cf, type: 3}
+  _healthItemPrefab: {fileID: 1205796951291082771, guid: e051f4969bae36e4d9ec09e5977cc7d4, type: 3}
   _killCount: 0
   _playTime: 0
   _minRadius: 15
   _maxRadius: 20
   _spawnSpan: 5
   _distance: 25
+  _hpItemDropRate: 50
+  _expItems: []
 --- !u!4 &1893141311
 Transform:
   m_ObjectHideFlags: 0
@@ -35808,7 +35904,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1556062761}
   m_Father: {fileID: 1530154081}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1988661323

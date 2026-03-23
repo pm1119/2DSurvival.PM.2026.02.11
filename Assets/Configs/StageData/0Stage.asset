@@ -20,6 +20,8 @@ MonoBehaviour:
     _damageRate: 1
     _hpRate: 1
     _expRate: 1
+    _expItemDropRate: 0
+    _expItemRates: []
   - _initialTime: 60
     _spawnSpan: 2
     _spawnRates:
@@ -28,6 +30,11 @@ MonoBehaviour:
     _damageRate: 1.5
     _hpRate: 1.5
     _expRate: 1.5
+    _expItemDropRate: 0.3
+    _expItemRates:
+    - 10
+    - 5
+    - 1
   - _initialTime: 120
     _spawnSpan: 1.5
     _spawnRates:
@@ -37,6 +44,11 @@ MonoBehaviour:
     _damageRate: 2
     _hpRate: 2
     _expRate: 2
+    _expItemDropRate: 0.6
+    _expItemRates:
+    - 10
+    - 5
+    - 1
   - _initialTime: 180
     _spawnSpan: 1.2
     _spawnRates:
@@ -47,6 +59,11 @@ MonoBehaviour:
     _damageRate: 2.5
     _hpRate: 2.5
     _expRate: 2.5
+    _expItemDropRate: 0.9
+    _expItemRates:
+    - 5
+    - 3
+    - 1
   - _initialTime: 240
     _spawnSpan: 1
     _spawnRates:
@@ -58,4 +75,9 @@ MonoBehaviour:
     _damageRate: 3
     _hpRate: 3
     _expRate: 3
+    _expItemDropRate: 1.2
+    _expItemRates:
+    - 5
+    - 3
+    - 1
   _playTime: 300

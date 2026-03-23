@@ -115,4 +115,13 @@ public class HeroModel : CharacterModel
 
 		InvokeHpChanged();
 	}
+
+	public void HpRecover(float amount)
+	{
+		_currentHp += amount;
+		if (_currentHp >= _maxHp)
+		{
+			_currentHp = _maxHp;
+		}
+	}
 }

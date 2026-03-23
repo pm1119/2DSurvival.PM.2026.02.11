@@ -6,12 +6,19 @@
 [System.Serializable]
 public class WaveData
 {
+    [Header("----- 시작 시간 -----")]
     [SerializeField] float _initialTime;                //웨이브 시작 시간
+
+    [Header("----- 적 스폰 -----")]
     [SerializeField] float _spawnSpan;                  //적 스폰 간격
     [SerializeField] float[] _spawnRates;               //적 동류별 스폰 확률
     [SerializeField] float _damageRate;                 //적 공격력 베율
     [SerializeField] float _hpRate;                     //적 체력 배율
     [SerializeField] float _expRate;                    //적 보상 경험치 배율
+
+    [Header("----- 경험치 아이템 -----")]
+    [SerializeField] float _expItemDropRate;            //경험치 아이템 드롭 확률
+    [SerializeField] float[] _expItemRates;             //경험치 아이템 비율 배열
                                                         
     public float InitialTime => _initialTime;
 
@@ -22,6 +29,8 @@ public class WaveData
     public float ExpRate => _expRate;
 
     public float HpRate => _hpRate;
+
+    public float ExpItemDropRate => _expItemDropRate;
 
     /// <summary>
     /// 스폰 확률에 따라 랜덤하게 적 종류 인덱스를 선택해 반환하는 함수
@@ -54,4 +63,36 @@ public class WaveData
 
         return _spawnRates.Length - 1;
     }
+
+    /// <summary>
+    /// 스폰 확률에 따라 랜덤하게 경험치 아이템 인덱스를 선택해 반환하는 함수
+    /// </summary>
+    /// <returns>선택된 경험치 아이템 인덱스</returns>
+    public int GetRandomExpItemIndex()
+    {
+		//확률 합 계산
+		float total = 0;
+		foreach (var item in _expItemRates)
+		{
+			total += item;
+		}
+
+		//랜덤 지점
+		float randomPoint = Random.value * total;
+
+		//당첨 확인
+		for (int i = 0; i < _expItemRates.Length; i++)
+		{
+			if (randomPoint < _expItemRates[i])
+			{
+				return i;
+			}
+			else
+			{
+				randomPoint -= _expItemRates[i];
+			}
+		}
+
+		return _expItemRates.Length - 1;
+	}
 }
