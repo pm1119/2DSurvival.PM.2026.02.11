@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameStartandQuit : MonoBehaviour
+public class TitleScene : MonoBehaviour
 {
     [Header("----- ÄÄÆ÷³ÍÆ® -----")]
     [SerializeField] Button _startButton;
