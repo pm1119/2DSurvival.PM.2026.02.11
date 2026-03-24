@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 328164872177365785}
   - component: {fileID: 263298247027689890}
-  - component: {fileID: 4572947229975138250}
+  - component: {fileID: 6775826099277605060}
   m_Layer: 9
-  m_Name: 0ExpItem
+  m_Name: MagnetItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.005461842, y: 0}
   m_Radius: 0.3088356
---- !u!114 &4572947229975138250
+--- !u!114 &6775826099277605060
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,14 +79,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5005165506555376782}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 387ff6dbc38919740aff29c15345e27b, type: 3}
+  m_Script: {fileID: 11500000, guid: 45e5743eac5cc324cb0e86e1bd6f1bb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hero: {fileID: 0}
-  _animator: {fileID: 5667196295355181366}
-  _expReward: 5
-  _startSpeed: 2
-  _accleration: 10
 --- !u!1 &5456982251717772350
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +159,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 362616440, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  m_Sprite: {fileID: 1997828774, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

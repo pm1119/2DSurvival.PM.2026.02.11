@@ -10,15 +10,16 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("----- 설정 데이터 -----")]
     [SerializeField] StageData _stageData;      //스테이지 데이터
-    [SerializeField] WaveData _waveData;                         //현재 웨이브 데이터
+    [SerializeField] WaveData _waveData;        //현재 웨이브 데이터
 
     [Header("----- 스폰 기준 -----")]
     [SerializeField] Hero _hero;                //플레이어 캐릭터
 
     [Header("----- 리소스 -----")]
     [SerializeField] HeroModel _heroModel;
-    [SerializeField] Enemy[] _enemyPrefabs;        //적 캐릭터 배열
-    [SerializeField] ExpItem[] _expItemPrefabs;    //경험치 아이템 배열
+    [SerializeField] Enemy[] _enemyPrefabs;              //적 캐릭터 배열
+    [SerializeField] ExpItem[] _expItemPrefabs;          //경험치 아이템 배열
+    [SerializeField] MagnetItem _magnetItemPrefab;       //자석 아이템 프리팹
     [SerializeField] HealthItem _healthItemPrefab;       //체력 아이템
 
     [Header("----- 런타임 데이터 -----")]
@@ -38,6 +39,8 @@ public class EnemySpawner : MonoBehaviour
 
     Coroutine _playTimeRoutine;                 //현재 웨이브 계산 코루틴 변수
 
+    Pool _magnetItemPool;                       
+
     /// <summary>
     /// 생성한 경험치 아이템 리스트
     /// </summary>
@@ -45,6 +48,9 @@ public class EnemySpawner : MonoBehaviour
 
 	public void Initialize()
     {
+        //자석 아이템 풀 생성
+        CreateMagnetItemPool();
+
         //코루틴 실행
 		_spawnEnemyCoroutine = StartCoroutine(SpawnEnemyRoutine());
         _playTimeRoutine = StartCoroutine(PlayTimeRoutine());
@@ -57,10 +63,31 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// 적 생성 코루틴 함수
+    /// 자석 아이템 풀을 만드는 함수
     /// </summary>
-    /// <returns></returns>
-    IEnumerator SpawnEnemyRoutine()
+    void CreateMagnetItemPool()
+    {
+        //풀의 부모 게임오브젝트 생성
+        GameObject parent = new GameObject("MagnetItem Pool");
+
+        //풀 생성
+        _magnetItemPool = 
+            new Pool(_magnetItemPrefab.gameObject, parent.transform, 10); 
+    }
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space) == true)
+        {
+            StartMagnetEffect();
+        }
+	}
+
+	/// <summary>
+	/// 적 생성 코루틴 함수
+	/// </summary>
+	/// <returns></returns>
+	IEnumerator SpawnEnemyRoutine()
     {
         while (true)
         {
@@ -161,6 +188,12 @@ public class EnemySpawner : MonoBehaviour
 			SpawnExpItem(enemy.transform.position);
 		}
 
+        //자석 아이템 생성 확률 판정
+        if (Random.value < _waveData.MagnetItemDropRate)
+        {
+            SpawnMagnetItem(enemy.transform.position);
+        }
+
         if (Random.value < _hpItemDropRate)
         {
             SpawnHpItem(enemy.transform.position);
@@ -193,6 +226,18 @@ public class EnemySpawner : MonoBehaviour
 
         //생성된 경험치 아이템을 리스트에 추가
         _expItems.Add(expItem);
+    }
+
+    public void SpawnMagnetItem(Vector3 pos)
+    {
+        //풀에서 자식 아이템 게임오브젝트 가져오기
+        GameObject magnetItemGo = _magnetItemPool.Pop();
+        magnetItemGo.transform.SetParent(transform);
+        magnetItemGo.transform.position = pos;
+
+		//게임오브젝트에서 MagnetItem 컴포넌트 가져오기
+		MagnetItem magnetItem = magnetItemGo.GetComponent<MagnetItem>();
+        magnetItem.Initialize(this);
     }
 
     public void SpawnHpItem(Vector3 pos)

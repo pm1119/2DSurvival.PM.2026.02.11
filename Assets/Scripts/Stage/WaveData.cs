@@ -19,6 +19,9 @@ public class WaveData
     [Header("----- 경험치 아이템 -----")]
     [SerializeField] float _expItemDropRate;            //경험치 아이템 드롭 확률
     [SerializeField] float[] _expItemRates;             //경험치 아이템 비율 배열
+
+    [Header("----- 자석 아이템 -----")]
+    [SerializeField] float _magnetItemDropRate;         //자석 아이템 드롭 확률
                                                         
     public float InitialTime => _initialTime;
 
@@ -31,6 +34,8 @@ public class WaveData
     public float HpRate => _hpRate;
 
     public float ExpItemDropRate => _expItemDropRate;
+
+    public float MagnetItemDropRate => _magnetItemDropRate;
 
     /// <summary>
     /// 스폰 확률에 따라 랜덤하게 적 종류 인덱스를 선택해 반환하는 함수
