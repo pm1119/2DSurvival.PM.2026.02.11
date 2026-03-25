@@ -3,10 +3,10 @@ using UnityEngine;
 public class GameOver : MonoBehaviour
 {
     [Header("----- ÄÄÆ÷³ÍÆ® -----")]
-    [SerializeField] Transform _transform;
+    [SerializeField] GameObject _deadPanel;
 
     public void GameOverPanel()
     {
-
+        _deadPanel.SetActive(true);
     }
 }

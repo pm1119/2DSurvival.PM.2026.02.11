@@ -43,30 +43,32 @@ public class WaveData
     /// <returns></returns>
     public int GetRandomEnemyIndex()
     {
-        //확률 합 계산
-        float total = 0;
-        foreach (var item in _spawnRates)
-        {
-            total += item;
-        }
+        return _spawnRates.Choose();
 
-        //랜덤 지점
-        float randomPoint = Random.value * total;
+        ////확률 합 계산
+        //float total = 0;
+        //foreach (var item in _spawnRates)
+        //{
+        //    total += item;
+        //}
 
-        //당첨 확인
-        for (int i = 0; i < _spawnRates.Length; i++)
-        {
-            if (randomPoint < _spawnRates[i])
-            {
-                return i;
-            }
-            else
-            {
-                randomPoint -= _spawnRates[i];
-            }
-        }
+        ////랜덤 지점
+        //float randomPoint = Random.value * total;
 
-        return _spawnRates.Length - 1;
+        ////당첨 확인
+        //for (int i = 0; i < _spawnRates.Length; i++)
+        //{
+        //    if (randomPoint < _spawnRates[i])
+        //    {
+        //        return i;
+        //    }
+        //    else
+        //    {
+        //        randomPoint -= _spawnRates[i];
+        //    }
+        //}
+
+        //return _spawnRates.Length - 1;
     }
 
     /// <summary>
@@ -75,29 +77,31 @@ public class WaveData
     /// <returns>선택된 경험치 아이템 인덱스</returns>
     public int GetRandomExpItemIndex()
     {
-		//확률 합 계산
-		float total = 0;
-		foreach (var item in _expItemRates)
-		{
-			total += item;
-		}
+        return _expItemRates.Choose();
 
-		//랜덤 지점
-		float randomPoint = Random.value * total;
+		////확률 합 계산
+		//float total = 0;
+		//foreach (var item in _expItemRates)
+		//{
+		//	total += item;
+		//}
 
-		//당첨 확인
-		for (int i = 0; i < _expItemRates.Length; i++)
-		{
-			if (randomPoint < _expItemRates[i])
-			{
-				return i;
-			}
-			else
-			{
-				randomPoint -= _expItemRates[i];
-			}
-		}
+		////랜덤 지점
+		//float randomPoint = Random.value * total;
 
-		return _expItemRates.Length - 1;
+		////당첨 확인
+		//for (int i = 0; i < _expItemRates.Length; i++)
+		//{
+		//	if (randomPoint < _expItemRates[i])
+		//	{
+		//		return i;
+		//	}
+		//	else
+		//	{
+		//		randomPoint -= _expItemRates[i];
+		//	}
+		//}
+
+		//return _expItemRates.Length - 1;
 	}
 }

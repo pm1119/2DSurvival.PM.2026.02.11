@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] ExpItem[] _expItemPrefabs;          //경험치 아이템 배열
     [SerializeField] MagnetItem _magnetItemPrefab;       //자석 아이템 프리팹
     [SerializeField] HealthItem _healthItemPrefab;       //체력 아이템
+    [SerializeField] GameObject _clear;
 
     [Header("----- 런타임 데이터 -----")]
     [SerializeField] int _killCount;            //킬 수
@@ -39,7 +40,9 @@ public class EnemySpawner : MonoBehaviour
 
     Coroutine _playTimeRoutine;                 //현재 웨이브 계산 코루틴 변수
 
-    Pool _magnetItemPool;                       
+    Pool _magnetItemPool;                       //자석 아이템 풀
+    Pool[] _expItemPools;                       //경험치 아이템 풀 배열
+    Pool[] _enemyPools;                         //적 풀 배열                                     
 
     /// <summary>
     /// 생성한 경험치 아이템 리스트
@@ -48,8 +51,16 @@ public class EnemySpawner : MonoBehaviour
 
 	public void Initialize()
     {
+        _clear.SetActive(false);
+
         //자석 아이템 풀 생성
         CreateMagnetItemPool();
+
+        //경험치 아이템 풀들 생성
+        CreateExpItemPools();
+
+        //적 풀들 생성
+        CreateEnemyPools();
 
         //코루틴 실행
 		_spawnEnemyCoroutine = StartCoroutine(SpawnEnemyRoutine());
@@ -73,6 +84,41 @@ public class EnemySpawner : MonoBehaviour
         //풀 생성
         _magnetItemPool = 
             new Pool(_magnetItemPrefab.gameObject, parent.transform, 10); 
+    }
+
+    /// <summary>
+    /// 경험치 아이템 풀들을 만드는 함수
+    /// </summary>
+    void CreateExpItemPools()
+    {
+        _expItemPools = new Pool[_expItemPrefabs.Length];
+        for (int i = 0; i < _expItemPrefabs.Length; i++)
+        {
+            //풀의 부모 게임오브젝트 생성
+            GameObject parent 
+                = new GameObject($"{_expItemPrefabs[i].name}_Pool");
+
+            //풀 생성
+            _expItemPools[i]
+                = new Pool(_expItemPrefabs[i].gameObject, parent.transform, 10);
+        }
+    }
+
+    /// <summary>
+    /// 적 풀을 만드는 함수
+    /// </summary>
+    void CreateEnemyPools()
+    {
+        _enemyPools = new Pool[_enemyPrefabs.Length];
+        for (int i = 0; i < _enemyPrefabs.Length; i++)
+        {
+            //풀 부모 게임오브젝트 생성
+            GameObject parent
+                = new GameObject($"{_enemyPrefabs[i].name}_Pool");
+
+            //풀 생성
+            _enemyPools[i] = new Pool(_enemyPrefabs[i].gameObject, parent.transform, 10);
+        }
     }
 
 	private void Update()
@@ -111,6 +157,7 @@ public class EnemySpawner : MonoBehaviour
 			if (reaminingTime <= 0)
             {
                 StopAllCoroutines();
+                _clear.SetActive(true);
             }
             yield return null;
         }
@@ -121,31 +168,24 @@ public class EnemySpawner : MonoBehaviour
     /// </summary>
     void SpawnEnemy()
     {
-        //랜덤한 적 프리팹 선택
-        Enemy enemyPrefab = _enemyPrefabs[_waveData.GetRandomEnemyIndex()];
+        //풀 선택
+        Pool pool = _enemyPools[_waveData.GetRandomEnemyIndex()];
 
-		//_enemyPrefab 복제 생성
-		Enemy enemy = Instantiate(enemyPrefab, transform);
+        //게임오브젝트 꺼내오기
+        GameObject enemyGo = pool.Pop();
 
-        //생성 위치 구하기
-        Vector3 pos = GetSpawnPosition();
+        //위치 설정
+        enemyGo.transform.SetParent(transform);
+        enemyGo.transform.position = GetSpawnPosition();
 
-        //생성 위치 적용
-        enemy.transform.position = pos;
+        //Enemy 컴포넌트 가져오기 
+        Enemy enemy = enemyGo.GetComponent<Enemy>();
 
         //생성된 적 사망 이벤트 구독
         enemy.OnDead += HandleEnemyDead;
 
 		//생성된 적 초기화
 		enemy.Initialize(_hero, this, _waveData);
-
-		float reX = _hero.transform.position.x - enemy.transform.position.x;
-		float reY = _hero.transform.position.y - enemy.transform.position.y;
-
-		if (reX > _distance || reY > _distance)
-		{
-			enemy.transform.position = pos;
-		}
 	}
 
     /// <summary>
@@ -209,14 +249,18 @@ public class EnemySpawner : MonoBehaviour
         //랜덤 인덱스 생성
         int index = Random.Range(0, _waveData.GetRandomExpItemIndex());
 
-        //프리팹 선택
-        ExpItem prefab = _expItemPrefabs[index];
+        //풀 선택
+        Pool pool = _expItemPools[index];
 
-        //복제본 생성
-        ExpItem expItem = Instantiate(prefab);
+        //풀에서 꺼내오기
+        GameObject expItemGo = pool.Pop();
 
         //위치 설정
-        expItem.transform.position = pos;
+        expItemGo.transform.SetParent(transform);
+        expItemGo.transform.position = pos;
+
+		//ExpItem 컴포넌트 가져오기
+		ExpItem expItem = expItemGo.GetComponent<ExpItem>();
 
         //경험치 아이템 제거 이벤트 구독
         expItem.OnRemoved += HandleExpItemRemoved;

@@ -50,7 +50,11 @@ public class Enemy : MonoBehaviour
         _hero = hero;
         _spawner = spawner;
 
+        _collider.enabled = true;
+        _rigidbody.simulated = true;
+
         _enemyModel.Initialize(waveData);
+        _heroRender.Initialize();
 
         _enemyStates = new IEnemyState[]
         {
@@ -210,7 +214,14 @@ public class Enemy : MonoBehaviour
 	/// </summary>
 	public void Remove()
     {
-        Destroy(gameObject);
+        //외부 연결 이벤트 초기화
+        OnDead = null;
+
+        //외부 참조 변수 초기화
+        _hero = null;
+        _spawner = null;
+
+        gameObject.DestroyOrReturnPool();
     }
 }
 

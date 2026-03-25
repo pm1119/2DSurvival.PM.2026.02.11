@@ -71,13 +71,14 @@ public class Upgrader : MonoBehaviour
 		}
 
 		//2. 업그레이드 가능한 후보군 셔플
-		for (int i = list.Count - 1; i > 0; i--)
-		{
-			int randIndex = Random.Range(0, i + 1);
-			IUpgradable temp = list[i];
-			list[i] = list[randIndex];
-			list[randIndex] = temp;
-		}
+		list.Shuffle();
+		//for (int i = list.Count - 1; i > 0; i--)
+		//{
+		//	int randIndex = Random.Range(0, i + 1);
+		//	IUpgradable temp = list[i];
+		//	list[i] = list[randIndex];
+		//	list[randIndex] = temp;
+		//}
 
 		//3. 그 중 최대 3개만 UI에 표시
 		for (int i = 0; i < _upgradeViews.Length; i++)

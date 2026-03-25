@@ -12,6 +12,12 @@ public class HeroRender : MonoBehaviour
 
 	public Animator Animator => _animator;
 
+	public void Initialize()
+	{
+		//애니메이터 초기화
+		_animator.Rebind();
+	}	
+
 	public void HandleMoved(Vector3 velocity)
 	{
 		//스프라이트 렌더러 플립

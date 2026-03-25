@@ -29,6 +29,7 @@ public class ExpItem : MonoBehaviour
     public void Initialize(Hero hero)
     {
         _hero = hero;
+        _animator.enabled = true;
     }
 
     /// <summary>
@@ -74,8 +75,26 @@ public class ExpItem : MonoBehaviour
 		if (collision.CompareTag("Player") == true)
         {
             _hero.AddExp(_expReward);
-            OnRemoved?.Invoke(this);
-            Destroy(gameObject);
+
+            Remove();
         }
+	}
+
+	//오브젝트 풀링을 사용했을 경우
+	//반드시 풀링 오브젝트가 풀로 되돌아갈 때 
+	//이벤트, 참조 등을 꼭 초기화해줘야 한다.
+	public void Remove()
+	{
+        //제거 이벤트 발행
+		OnRemoved?.Invoke(this);
+
+        //외부 이벤트 구독 초기화
+        OnRemoved = null;
+
+        //외부 참조 변수
+        _hero = null;
+
+        //풀로 되돌리기
+        gameObject.DestroyOrReturnPool();
 	}
 }

@@ -94,6 +94,15 @@ public class HeroModel : CharacterModel
 		InvokeHpChanged();
 	}
 
+	public override void TakeDamage(float damage)
+	{
+		base.TakeDamage(damage);
+		if (IsAlive == false)
+		{
+			Time.timeScale = 0;
+		}
+	}
+
 	/// <summary>
 	/// 이동 속력 증가 계수를 설정하는 함수
 	/// </summary>

@@ -9,6 +9,7 @@ public class Hero : MonoBehaviour
 	[SerializeField] HeroData _data;					//설정 데이터
 
     [Header("----- 컴포넌트 -----")]
+	[SerializeField] GameOver _gameOver;
 	[SerializeField] HeroModel _heroModel;				//런타임 데이터
     [SerializeField] Mover _mover;						//이동자
 	[SerializeField] HeroRender _heroRender;			//애니메이터 핸들러
@@ -32,6 +33,8 @@ public class Hero : MonoBehaviour
 
 		//경험치 변경 이벤트 구독
 		_heroModel.OnExpChanged += _statusView.UpdateExp;
+
+		_heroModel.OnDead += _gameOver.GameOverPanel;
 	}
 
 	public void Initialize()
