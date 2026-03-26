@@ -89,7 +89,7 @@ public abstract class FiringWeapon : Weapon
 
     protected Vector3 GetRandomDirection()
     {
-        return Random.insideUnitCircle.normalized;
+        return Util.GetRandomDirection2D();
     }
 
     //protected virtual void BulletSpawn()

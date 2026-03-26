@@ -41,4 +41,28 @@ public static class Extension
 	{
 		Util.Shuffle(list);
 	}
+
+	/// <summary>
+	/// 리스트(배열)에서 중복 없이 원하는 개수만큼 랜덤하게 선택하여 리스트에 담아 반환하는 함수
+	/// </summary>
+	/// <typeparam name="T">리스트 요소와 타입</typeparam>
+	/// <param name="list"></param>
+	/// <param name="count">선택할 개수</param>
+	/// <returns></returns>
+	public static List<T> ChooseRandom<T>(this IReadOnlyList<T> list, int count)
+	{
+		return Util.ChooseRandom(list, count);
+	}
+
+	/// <summary>
+	/// 게임오브젝트에 T 타입 컴포넌트가 있으면 그대로 반환하고.
+	/// 없으면 추가하여 반환하는 함수
+	/// </summary>
+	/// <typeparam name="T">컴포넌트 타입</typeparam>
+	/// <param name="go"></param>
+	/// <returns>추가되었거나, 찾은 컴포넌트</returns>
+	public static T GetOrAddComponent<T>(this GameObject go) where T : Component
+	{
+		return Util.GetOrAddComponent<T>(go);
+	}
 }

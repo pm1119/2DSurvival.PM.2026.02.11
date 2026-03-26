@@ -157,6 +157,7 @@ public class EnemySpawner : MonoBehaviour
 			if (reaminingTime <= 0)
             {
                 StopAllCoroutines();
+                Time.timeScale = 0;
                 _clear.SetActive(true);
             }
             yield return null;

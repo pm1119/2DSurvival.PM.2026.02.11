@@ -45,13 +45,14 @@ public class Pool
         go.SetActive(false);
 
         //4. 복제본 게임오브젝트에서 Poolable 컴포넌트 가져오기
-        Poolable poolable = go.GetComponent<Poolable>();
+        Poolable poolable = go.GetOrAddComponent<Poolable>();
+        //Poolable poolable = go.GetComponent<Poolable>();
 
-        //5. Poolable 컴포넌트가 없었다면 새로 추가
-        if (poolable == null)
-        {
-            poolable = go.AddComponent<Poolable>();
-        }
+        ////5. Poolable 컴포넌트가 없었다면 새로 추가
+        //if (poolable == null)
+        //{
+        //    poolable = go.AddComponent<Poolable>();
+        //}
 
 		//6. Poolable 컴포넌트에 풀 등록
         poolable.SetPool(this);
@@ -79,11 +80,12 @@ public class Pool
         //새로 생성해 반환
         GameObject newGo = Object.Instantiate(_prefab);
 
-        Poolable poolable = newGo.GetComponent<Poolable>();
-        if (poolable == null)
-        {
-            poolable = newGo.AddComponent<Poolable>();
-        }
+        Poolable poolable = newGo.GetOrAddComponent<Poolable>();
+        //Poolable poolable = newGo.GetComponent<Poolable>();
+        //if (poolable == null)
+        //{
+        //    poolable = newGo.AddComponent<Poolable>();
+        //}
         poolable.SetPool(this);
         return newGo;
     }
