@@ -19,8 +19,11 @@ public class ScytheBullet : ProjectileBullet
 
     Coroutine _attackRoutine;
 
-	private void Start()
-	{
+    public void StartAttackRoutine()
+    {
+        _enemies.Clear();                       //해쉬셋 초기화
+        transform.localScale = Vector3.one;     //스케일 초기화
+
 		_attackRoutine = StartCoroutine(AttackRoutine());
 	}
 

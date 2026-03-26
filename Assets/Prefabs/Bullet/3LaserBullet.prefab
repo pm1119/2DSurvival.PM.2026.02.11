@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8103947284262803814}
   - component: {fileID: 3145170333282645437}
   - component: {fileID: 5863467361393699291}
+  - component: {fileID: 8113913846930002555}
   m_Layer: 0
   m_Name: 3LaserBullet
   m_TagString: Untagged
@@ -186,3 +187,22 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 10.1, y: 0.1}
   m_EdgeRadius: 0
+--- !u!114 &8113913846930002555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720236926910503988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80e4ab079c50b8f44b20e37a1b6d275a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _damage: 0
+  _targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  _lineRenderer: {fileID: 3145170333282645437}
+  _collider2D: {fileID: 5863467361393699291}
+  _duration: 0.5

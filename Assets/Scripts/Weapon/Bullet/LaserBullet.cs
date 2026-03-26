@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class LaserBullet : Bullet
@@ -22,4 +23,19 @@ public class LaserBullet : Bullet
         size.x = range;
         _collider2D.size = size;
     }
+
+    public void SetDuration(float duration)
+    {
+        _timer = 0;
+        _duration = duration;
+    }
+
+	private void FixedUpdate()
+	{
+		_timer += Time.fixedDeltaTime;
+		if (_timer > _duration)
+		{
+            gameObject.DestroyOrReturnPool();
+		}
+	}
 }

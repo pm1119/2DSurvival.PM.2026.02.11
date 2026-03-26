@@ -20,6 +20,7 @@ public class ProjectileBullet : Bullet
 
 	public void SetDuration(float duration)
 	{
+		_timer = 0;
 		_duration = duration;
 	}
 
@@ -43,7 +44,7 @@ public class ProjectileBullet : Bullet
 		_timer += Time.fixedDeltaTime;
 		if (_timer > _duration )
 		{
-			Destroy(gameObject);
+			gameObject.DestroyOrReturnPool();
 		}
 	}
 

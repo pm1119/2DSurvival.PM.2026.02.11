@@ -14,6 +14,14 @@ public class ScytheWeapon : FiringWeapon
 	[SerializeField] float _bulletRange;
 	[SerializeField] float _rotSpeed;
 
+	Pool _scythePool;
+
+	public override void Initialize()
+	{
+		_scythePool =
+			new Pool(_scytheBulletPrefab.gameObject, this.transform, 10);
+	}
+
 	protected override void CalculateStats()
 	{
 		base.CalculateStats();
@@ -26,7 +34,10 @@ public class ScytheWeapon : FiringWeapon
 
 	protected override void BulletSpawn()
 	{
-		ScytheBullet scytheBullet = Instantiate(_scytheBulletPrefab);
+		//ScytheBullet scytheBullet = Instantiate(_scytheBulletPrefab);
+
+		GameObject go = _scythePool.Pop();
+		ScytheBullet scytheBullet = go.GetComponent<ScytheBullet>();
 
 		scytheBullet.transform.position = transform.position;
 
@@ -36,5 +47,7 @@ public class ScytheWeapon : FiringWeapon
 		scytheBullet.SetStat(_bulletRange, _rotSpeed, _damageDelay);
 
 		scytheBullet.SetDirection(GetRandomDirection());
+
+		scytheBullet.StartAttackRoutine();
 	}
 }
