@@ -44,6 +44,10 @@ public class Upgrader : MonoBehaviour
 		{
 			_upgradables[2].Upgrade();
 		}
+		else if (Input.GetKeyDown(KeyCode.Alpha4) == true)
+		{
+			_upgradables[3].Upgrade();
+		}
 	}
 
 	public void HandleLevelUp(int prelevel, int level)

@@ -38,4 +38,9 @@ public class LaserBullet : Bullet
             gameObject.DestroyOrReturnPool();
 		}
 	}
+
+	protected override void OnTriggerEnter2D(Collider2D collision)
+	{
+		base.OnTriggerEnter2D(collision);
+	}
 }

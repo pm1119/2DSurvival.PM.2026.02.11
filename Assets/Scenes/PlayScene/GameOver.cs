@@ -8,5 +8,6 @@ public class GameOver : MonoBehaviour
     public void GameOverPanel()
     {
         _deadPanel.SetActive(true);
-    }
+		Time.timeScale = 0;
+	}
 }

@@ -97,10 +97,6 @@ public class HeroModel : CharacterModel
 	public override void TakeDamage(float damage)
 	{
 		base.TakeDamage(damage);
-		if (IsAlive == false)
-		{
-			Time.timeScale = 0;
-		}
 	}
 
 	/// <summary>

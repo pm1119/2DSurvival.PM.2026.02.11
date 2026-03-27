@@ -22929,6 +22929,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1085938457}
+  - component: {fileID: 1085938458}
   m_Layer: 6
   m_Name: 3LaserWeapon
   m_TagString: Untagged
@@ -22951,6 +22952,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 113523587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085938458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085938456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fdbd17fc46d98a468b913e62bea7701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponData: {fileID: 11400000, guid: b8d55da575bce8449bd5ae76d6693ede, type: 2}
+  _damage: 0
+  _level: -1
+  _shootingRange: 0
+  _bulletCount: 0
+  _targetSensor: {fileID: 841958489}
+  _speed: 0
+  _cooltime: 0
+  _duration: 0
+  _fireDelay: 0
+  _laserBulletPrefab: {fileID: 8113913846930002555, guid: dc793617e91acb7429f75f23b72c722f, type: 3}
+  _rotSpeed: 0
 --- !u!1 &1096789375
 GameObject:
   m_ObjectHideFlags: 0
@@ -36820,7 +36845,7 @@ MonoBehaviour:
   - {fileID: 65809281677102979, guid: 5aa2094f40311a6468f315be151762cf, type: 3}
   _magnetItemPrefab: {fileID: 6775826099277605060, guid: f9e9dc8d560703b45ac6fb738c995653, type: 3}
   _healthItemPrefab: {fileID: 1205796951291082771, guid: e051f4969bae36e4d9ec09e5977cc7d4, type: 3}
-  _clear: {fileID: 202760521}
+  _clear: {fileID: 1041178694}
   _killCount: 0
   _playTime: 0
   _minRadius: 15

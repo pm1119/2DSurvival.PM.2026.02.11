@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weaponName: "\uCD1D"
   _desc: "\uCD1D\uC744 \uC3F4 \uC6D0\uAC70\uB9AC\uC5D0\uC11C \uC801\uC744 \uC18C\uD0D5\uD569\uB2C8\uB2E4."
-  _iconSprite: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  _iconSprite: {fileID: 563336626, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   _statDatas:
   - _damage: 5
     _shootingRange: 10

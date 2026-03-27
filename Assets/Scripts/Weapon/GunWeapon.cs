@@ -13,24 +13,28 @@ public class GunWeapon : FiringWeapon
 	[Header("----- 리소스 -----")]
 	[SerializeField] GunBullet _gunBulletsPrefab;
 
-    //Coroutine _coroutine;
+    Pool _gunPool;
 
-    //public override void Initialize()
-    //{
-    //    CalculateStats();
-    //    _coroutine = StartCoroutine(FireRoutine());
-    //}
+	//Coroutine _coroutine;
 
-    //IEnumerator FireRoutine()
-    //{
-    //    while (true)
-    //    {
-    //        BulletSpawn();
-    //        yield return new WaitForSeconds(_cooltime);
-    //    }
-    //}
+	public override void Initialize()
+	{
+		_gunPool =
+			new Pool(_gunBulletsPrefab.gameObject, this.transform, 10);
+		base.Initialize();
 
-    protected override void CalculateStats()
+	}
+
+	//IEnumerator FireRoutine()
+	//{
+	//    while (true)
+	//    {
+	//        BulletSpawn();
+	//        yield return new WaitForSeconds(_cooltime);
+	//    }
+	//}
+
+	protected override void CalculateStats()
     {
 		base.CalculateStats();
 
@@ -41,7 +45,11 @@ public class GunWeapon : FiringWeapon
 
     protected override void BulletSpawn()
 	{
-		GunBullet gunBullet = Instantiate(_gunBulletsPrefab);
+        //GunBullet gunBullet = Instantiate(_gunBulletsPrefab);
+
+		GameObject go = _gunPool.Pop();
+
+		GunBullet gunBullet = go.GetComponent<GunBullet>();
 
 		//총탄 생성 위치 선정
 		gunBullet.transform.position = transform.position;

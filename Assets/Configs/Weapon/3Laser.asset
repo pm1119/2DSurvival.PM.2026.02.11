@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1697a2f99b6964a844ddacf96954d0, type: 3}
+  m_Name: 3Laser
+  m_EditorClassIdentifier: 
+  _weaponName: "\uB808\uC774\uC800"
+  _desc: "\uC801\uC744 \uAD00\uD1B5\uD558\uB294 \uB808\uC774\uC800\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  _iconSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  _statDatas:
+  - _damage: 20
+    _shootingRange: 100
+    _rotSpeed: 10
+    _bulletCount: 1
+    _cooltime: 5
+    _speed: 0
+    _duration: 0.1
+    _fireDelay: 0
+    _attackCount: 1
+    _damageDelay: 0
+    _bulletRange: 0
+  - _damage: 30
+    _shootingRange: 100
+    _rotSpeed: 20
+    _bulletCount: 1
+    _cooltime: 4
+    _speed: 0
+    _duration: 0.2
+    _fireDelay: 0
+    _attackCount: 1
+    _damageDelay: 0
+    _bulletRange: 0
+  - _damage: 40
+    _shootingRange: 100
+    _rotSpeed: 30
+    _bulletCount: 1
+    _cooltime: 3
+    _speed: 0
+    _duration: 0.3
+    _fireDelay: 0
+    _attackCount: 1
+    _damageDelay: 0
+    _bulletRange: 0

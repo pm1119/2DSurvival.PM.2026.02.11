@@ -20,6 +20,7 @@ public class ScytheWeapon : FiringWeapon
 	{
 		_scythePool =
 			new Pool(_scytheBulletPrefab.gameObject, this.transform, 10);
+		base.Initialize();
 	}
 
 	protected override void CalculateStats()
