@@ -19,11 +19,14 @@ public class PlayScene : MonoBehaviour
 		//킬 수 변경 이벤트 구독
 		_enemySpawner.OnKillCountChanged += _statusView.UpdateKillCount;
 
+		//시간 변경 이벤트 구독
 		_enemySpawner.OnRemainingTimeChanged += _statusView.UpdateRemainingTime;
 	}
 
 	private void Start()
 	{
+		GameManager.Instance.DoSomething();
+
 		//플레이어 캐릭터 모델 초기화
 		_hero.Initialize();
 

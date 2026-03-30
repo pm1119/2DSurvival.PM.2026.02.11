@@ -207,6 +207,9 @@ public class Enemy : MonoBehaviour
 
         //사망 이벤트 발행
         OnDead?.Invoke(this);
+
+        //도전 과제 체크
+        GameManager.Instance.ChallangeManager.AddChallangeCount(ChallangeType.TotalKillCount);
 	}
 
 	/// <summary>

@@ -15,13 +15,13 @@ public class LaserWeapon : FiringWeapon
 	public override void Initialize()
 	{
 		_laserPool =
-			new Pool(_laserBulletPrefab.gameObject, this.transform, 5);
+			new Pool(_laserBulletPrefab.gameObject, transform, 5);
 		base.Initialize();
-		SetRotSpeed();
+		GetStatData();
 		_rotateRoutine = StartCoroutine(RotateRoutine());
 	}
 
-	public void SetRotSpeed()
+	public void GetStatData()
 	{
 		WeaponStatData weaponStatData = _weaponData.GetStatData(Level);
 		_rotSpeed = weaponStatData.GetStat(WeaponStatType.RotSpeed);
@@ -50,6 +50,9 @@ public class LaserWeapon : FiringWeapon
 	protected override void BulletSpawn()
 	{
 		GameObject go = _laserPool.Pop();
+
+		go.transform.localPosition = Vector3.zero;
+		go.transform.localRotation = Quaternion.identity;
 
 		LaserBullet laserBullet = go.GetComponent<LaserBullet>();
 

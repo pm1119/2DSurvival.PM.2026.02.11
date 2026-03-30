@@ -85,4 +85,4 @@ MonoBehaviour:
     - 3
     - 1
     _magnetItemDropRate: 0.3
-  _playTime: 300
+  _playTime: 60

@@ -19,5 +19,7 @@ public class PlayerInputHandler : InputHandler
 	public void OnMove(InputValue inputValue)
 	{
 		_inputVector = inputValue.Get<Vector2>();
+
+		GameManager.Instance.ChallangeManager.AddChallangeCount(ChallangeType.MoveCount);
 	}
 }

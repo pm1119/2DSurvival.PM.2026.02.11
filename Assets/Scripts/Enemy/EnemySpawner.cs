@@ -159,6 +159,7 @@ public class EnemySpawner : MonoBehaviour
                 StopAllCoroutines();
                 Time.timeScale = 0;
                 _clear.SetActive(true);
+                GameManager.Instance.ChallangeManager.AddChallangeCount(ChallangeType.ClearCount);
             }
             yield return null;
         }
