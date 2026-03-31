@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1697a2f99b6964a844ddacf96954d0, type: 3}
   m_Name: 1Gun
   m_EditorClassIdentifier: 
+  _index: 1
   _weaponName: "\uCD1D"
   _desc: "\uCD1D\uC744 \uC3F4 \uC6D0\uAC70\uB9AC\uC5D0\uC11C \uC801\uC744 \uC18C\uD0D5\uD569\uB2C8\uB2E4."
   _iconSprite: {fileID: 563336626, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}

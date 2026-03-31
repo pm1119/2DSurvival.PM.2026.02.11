@@ -29,26 +29,26 @@ public class Upgrader : MonoBehaviour
 		}
 	}
 
-	//테스트용
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Alpha1) == true)
-		{
-			_upgradables[0].Upgrade();
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha2) == true)
-		{
-			_upgradables[1].Upgrade();
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha3) == true)
-		{
-			_upgradables[2].Upgrade();
-		}
-		else if (Input.GetKeyDown(KeyCode.Alpha4) == true)
-		{
-			_upgradables[3].Upgrade();
-		}
-	}
+	////테스트용
+	//private void Update()
+	//{
+	//	if (Input.GetKeyDown(KeyCode.Alpha1) == true)
+	//	{
+	//		_upgradables[0].Upgrade();
+	//	}
+	//	else if (Input.GetKeyDown(KeyCode.Alpha2) == true)
+	//	{
+	//		_upgradables[1].Upgrade();
+	//	}
+	//	else if (Input.GetKeyDown(KeyCode.Alpha3) == true)
+	//	{
+	//		_upgradables[2].Upgrade();
+	//	}
+	//	else if (Input.GetKeyDown(KeyCode.Alpha4) == true)
+	//	{
+	//		_upgradables[3].Upgrade();
+	//	}
+	//}
 
 	public void HandleLevelUp(int prelevel, int level)
 	{
@@ -125,5 +125,16 @@ public class Upgrader : MonoBehaviour
 			_upgradeProduction.PopDown();
             Time.timeScale = 1.0f;
 		}
+	}
+
+	/// <summary>
+	/// 업그레이드 함수
+	/// </summary>
+	/// <param name="index">업그레이드 번호</param>
+	public void Upgrade(int index)
+	{
+		if (index < 0 || index >= _upgradables.Length)
+			return;
+		_upgradables[index].Upgrade();
 	}
 }

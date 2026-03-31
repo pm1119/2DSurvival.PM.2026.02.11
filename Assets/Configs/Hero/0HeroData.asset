@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be0d9485859b86049b08b25ba0483746, type: 3}
-  m_Name: HeroData
+  m_Name: 0HeroData
   m_EditorClassIdentifier: 
   _baseHp: 100
   _speed: 3
   _baseExp: 100
   _expIncrementRate: 1.5
+  _sprite: {fileID: 978012912, guid: 99a24620d31e5ce4e823c32d11e17c2c, type: 3}
+  _name: "\uCCAD\uB144"
+  _startWeaponData: {fileID: 11400000, guid: 5be46adc77d783c49a8a262cd154b2fd, type: 2}
+  _libraryAsset: {fileID: 7108339969198208228, guid: e1ffdce164f065444b3a6429263ce74d, type: 3}

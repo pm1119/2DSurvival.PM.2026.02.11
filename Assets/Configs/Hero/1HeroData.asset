@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be0d9485859b86049b08b25ba0483746, type: 3}
+  m_Name: 1HeroData
+  m_EditorClassIdentifier: 
+  _baseHp: 80
+  _speed: 4
+  _baseExp: 100
+  _expIncrementRate: 1.5
+  _sprite: {fileID: -150523396, guid: 0c187a32c5bde4747be8d00770b07403, type: 3}
+  _name: "\uC18C\uB140"
+  _startWeaponData: {fileID: 11400000, guid: b40fd5a8a26c7324d9d7f23bec5bfa54, type: 2}
+  _libraryAsset: {fileID: 7108339969198208228, guid: 684ad116df5ad7a4eb63fcad1be5ef1f, type: 3}

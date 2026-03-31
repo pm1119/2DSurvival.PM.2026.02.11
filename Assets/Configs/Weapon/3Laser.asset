@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1697a2f99b6964a844ddacf96954d0, type: 3}
   m_Name: 3Laser
   m_EditorClassIdentifier: 
+  _index: 3
   _weaponName: "\uB808\uC774\uC800"
   _desc: "\uC801\uC744 \uAD00\uD1B5\uD558\uB294 \uB808\uC774\uC800\uB97C \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
   _iconSprite: {fileID: -353751291, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

@@ -9,6 +9,7 @@
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    //정적 변수
     //싱글톤 객체를 가리키는 변수
     static GameManager _instance;
 
@@ -17,8 +18,11 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public static GameManager Instance => _instance;
 
+    //멤버 변수
     [SerializeField] ChallangeManager _challangeManager;
+    [SerializeField] PlaySetting _playSetting; 
     public ChallangeManager ChallangeManager => _challangeManager;
+    public PlaySetting PlaySetting => _playSetting;
 
 	private void Awake()
 	{

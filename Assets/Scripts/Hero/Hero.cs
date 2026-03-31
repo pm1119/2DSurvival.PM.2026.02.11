@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.U2D.Animation;
 
 /// <summary>
 /// 플레이어 캐릭터 담당(이동, HUD, 무기 홀더, 스탯 등등)
 /// </summary>
 public class Hero : MonoBehaviour
 {
-	[Header("----- 설정 데이터 -----")]
+	[Header("----- 설정 데이터(읽기 전용) -----")]
 	[SerializeField] HeroData _data;					//설정 데이터
 
     [Header("----- 컴포넌트 -----")]
@@ -15,7 +16,8 @@ public class Hero : MonoBehaviour
 	[SerializeField] HeroRender _heroRender;			//애니메이터 핸들러
 	[SerializeField] CharacterView _characterView;		//HUD(체력바)
 	[SerializeField] Upgrader _upgrader;				//업그레이드 담당
-	[SerializeField] StatusView _statusView;			//PlayScene 상태 뷰
+	[SerializeField] StatusView _statusView;            //PlayScene 상태 뷰
+	[SerializeField] SpriteLibrary _spriteLibrary;		//렌더러의 스프라이트 라이브러리
 
 	public void Awake()
 	{
@@ -37,9 +39,20 @@ public class Hero : MonoBehaviour
 		_heroModel.OnDead += _gameOver.GameOverPanel;
 	}
 
-	public void Initialize()
+	public void Initialize(HeroData heroData)
 	{
+		_data = heroData;
+
 		_heroModel.Initialize(_data);
+
+		//기본 무기 업그레이드
+		_upgrader.Upgrade(_data.StartWeaponData.Index);
+
+		//스프라이트 라이브러리 초기화
+		_spriteLibrary.spriteLibraryAsset = _data.LibraryAsset;
+
+		_statusView.Initialize(_data);
+		_statusView.IconChange();
 	}
 
 	/// <summary>

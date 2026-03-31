@@ -31832,7 +31832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd01c60cdd7056448dfa8becb3c256b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _data: {fileID: 11400000, guid: 32ee87f69cb16644ebf74894e4e7013f, type: 2}
+  _data: {fileID: 11400000, guid: 83c907bea971f8341a0d7d8397d9a26a, type: 2}
   _gameOver: {fileID: 1020450142}
   _heroModel: {fileID: 1530154088}
   _mover: {fileID: 1530154084}
@@ -31840,6 +31840,7 @@ MonoBehaviour:
   _characterView: {fileID: 992644721}
   _upgrader: {fileID: 1530154089}
   _statusView: {fileID: 7422667546939988417}
+  _spriteLibrary: {fileID: 1988661324}
 --- !u!114 &1530154084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42518,6 +42519,7 @@ MonoBehaviour:
   _levelText: {fileID: 2336550461363534867}
   _killCount: {fileID: 4398082606248336925}
   _remainingTimeText: {fileID: 898933184620769865}
+  _icon: {fileID: 3319597034051595848}
   _expBarTweenDuration: 0.2
   _killHighrightColor: {r: 1, g: 0, b: 0, a: 1}
   _killSeqDuration: 0.15
@@ -42711,6 +42713,7 @@ GameObject:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 6680336063092765068}
   - {fileID: 519420032}
   - {fileID: 1720685091}
   - {fileID: 69397565}
@@ -42724,4 +42727,3 @@ SceneRoots:
   - {fileID: 1096789378}
   - {fileID: 1020450141}
   - {fileID: 202760525}
-  - {fileID: 6680336063092765068}

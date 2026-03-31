@@ -27,8 +27,12 @@ public class PlayScene : MonoBehaviour
 	{
 		GameManager.Instance.DoSomething();
 
+		//게임매니저 싱글톤 객체의 플레이세팅에서
+		//현재 선택된 주인공 캐릭터 데이터(HeroData) 가져오기
+		HeroData heroData = GameManager.Instance.PlaySetting.SelectedHero;
+
 		//플레이어 캐릭터 모델 초기화
-		_hero.Initialize();
+		_hero.Initialize(heroData);
 
 		//적 생성기 초기화
 		_enemySpawner.Initialize();

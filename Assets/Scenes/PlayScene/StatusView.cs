@@ -8,11 +8,14 @@ using UnityEngine.UI;
 /// </summary>
 public class StatusView : MonoBehaviour
 {
+    HeroData _heroData;
+
     [Header("----- 컴포넌트 -----")]
     [SerializeField] Image _expBar;                     //경험치 바
     [SerializeField] TMP_Text _levelText;               //레벨 텍스트
     [SerializeField] TMP_Text _killCount;               //킬 수 텍스트
     [SerializeField] TMP_Text _remainingTimeText;       //남은 시간 텍스트
+    [SerializeField] Image _icon;
 
     [Header("----- 트윈 설정 -----")]
     [SerializeField] float _expBarTweenDuration = 1f;
@@ -39,6 +42,11 @@ public class StatusView : MonoBehaviour
         _killOrigonScale = _killCount.rectTransform.localScale;
         _remainingOriginColor = _remainingTimeText.color;
 	}
+
+	public void Initialize(HeroData heroData)
+    {
+        _heroData = heroData;
+    }
 
 	/// <summary>
 	/// 경험치 UI를 갱신하는 함수
@@ -111,5 +119,10 @@ public class StatusView : MonoBehaviour
         int seconds = Mathf.FloorToInt(time % 60);
 
 		_remainingTimeText.text = $"{minutes}:{seconds:00}";
+    }
+
+    public void IconChange()
+    {
+        _icon.sprite = _heroData.Sprite;
     }
 }

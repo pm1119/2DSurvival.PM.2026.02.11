@@ -10,6 +10,7 @@ public class TitleScene : MonoBehaviour
     [Header("----- ÄÄÆ÷³ÍÆ® -----")]
     [SerializeField] Button _startButton;
     [SerializeField] Button _quitButton;
+	[SerializeField] HeroSelecter _heroSelecter;
 
 	private void Awake()
 	{
@@ -20,6 +21,8 @@ public class TitleScene : MonoBehaviour
 	private void Start()
 	{
 		GameManager.Instance.DoSomething();
+
+		_heroSelecter.Initialize();
 	}
 
 	public void QuitGame()
