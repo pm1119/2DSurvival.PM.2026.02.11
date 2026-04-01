@@ -17,6 +17,7 @@ public class HeroData : ScriptableObject
     [SerializeField] Sprite _sprite;                //UI 아이콘 표시용 스프라이트
     [SerializeField] string _name;                  //이름
     [SerializeField] WeaponData _startWeaponData;   //시작 무기 데이터
+    [SerializeField] Color _color;                  //색상
 
     [Header("----- 렌더러 -----")]
     [SerializeField] SpriteLibraryAsset _libraryAsset;       //스프라이트 라이브러리 에셋
@@ -30,6 +31,8 @@ public class HeroData : ScriptableObject
     public string Name => _name;
 
     public WeaponData StartWeaponData => _startWeaponData;
+
+    public Color Color => _color;
 
     public SpriteLibraryAsset LibraryAsset => _libraryAsset;
 

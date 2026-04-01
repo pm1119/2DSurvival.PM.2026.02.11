@@ -11,6 +11,7 @@ public class HeroSelecterView : MonoBehaviour
     HeroData _heroData;
 
     [Header("----- 컴포넌트 -----")]
+    [SerializeField] Image _image;                          //자신 게임오브젝트의 이미지 컴포넌트
     [SerializeField] Image _icon;
     [SerializeField] TMP_Text _nameText;
     [SerializeField] Image _startWeaponIcon;
@@ -32,6 +33,7 @@ public class HeroSelecterView : MonoBehaviour
     {
         _heroData = heroData;
 
+        _image.color = _heroData.Color;
         _icon.sprite = _heroData.Sprite;
         _nameText.text = _heroData.Name;
         _startWeaponIcon.sprite = _heroData.StartWeaponData.IconSprite;

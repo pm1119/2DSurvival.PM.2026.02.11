@@ -51,8 +51,7 @@ public class Hero : MonoBehaviour
 		//스프라이트 라이브러리 초기화
 		_spriteLibrary.spriteLibraryAsset = _data.LibraryAsset;
 
-		_statusView.Initialize(_data);
-		_statusView.IconChange();
+		_statusView.UpdateHeroIcon(_data.Sprite);
 	}
 
 	/// <summary>

@@ -19,9 +19,9 @@ public class GunWeapon : FiringWeapon
 
 	public override void Initialize()
 	{
-		GameObject parent = GetComponent<GameObject>();
+		GameObject parent = new GameObject("GunBullet_Pool");
 		_gunPool =
-			new Pool(_gunBulletsPrefab.gameObject, this.transform, 10);
+			new Pool(_gunBulletsPrefab.gameObject, parent.transform, 10);
 		base.Initialize();
 
 	}

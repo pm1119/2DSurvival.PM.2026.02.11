@@ -18,8 +18,9 @@ public class ScytheWeapon : FiringWeapon
 
 	public override void Initialize()
 	{
+		GameObject parent = new GameObject("ScytheBullet_Pool");
 		_scythePool =
-			new Pool(_scytheBulletPrefab.gameObject, this.transform, 10);
+			new Pool(_scytheBulletPrefab.gameObject, parent.transform, 10);
 		base.Initialize();
 	}
 

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// 플레이어 캐릭터(주인공 캐릭터)를 고르는 역할
@@ -6,10 +7,11 @@ using UnityEngine;
 public class HeroSelecter : MonoBehaviour
 {
     [Header("----- 설정 데이터 -----")]
-    [SerializeField] HeroData[] _heroDatas;
+    [SerializeField] HeroData[] _heroDatas;					//히어로 데이터 배열
 
 	[Header("----- 뷰 -----")]
-	[SerializeField]HeroSelecterView[] _heroSelecterView;
+	[SerializeField] GameObject _selectionPanel;			//히어로 선택 패널 게임오브젝트
+	[SerializeField] HeroSelecterView[] _heroSelecterView;	//히어로 선택 배열
 
 	public void Initialize()
 	{
@@ -17,6 +19,7 @@ public class HeroSelecter : MonoBehaviour
 		{
 			if (i < _heroDatas.Length)
 			{
+				_heroSelecterView[i].OnHeroSelected += HandleHeroSelected;
 				_heroSelecterView[i].Initialize(_heroDatas[i]);
 			}
 			else
@@ -24,6 +27,23 @@ public class HeroSelecter : MonoBehaviour
 				_heroSelecterView[i].gameObject.SetActive(false);
 			}
 		}
+	}
+
+	/// <summary>
+	/// 히어로 선택 패널
+	/// </summary>
+	public void OpenHeroSelectionPanel()
+	{
+		_selectionPanel.SetActive(true);
+	}
+
+	public void HandleHeroSelected(HeroData heroData)
+	{
+		//현재 선택된 히어로 데이터를 교체
+		GameManager.Instance.PlaySetting.SetSelectedHero(heroData);
+
+		//Play 씬 로드 
+		SceneManager.LoadScene("Play");
 	}
 
 	private void Update()

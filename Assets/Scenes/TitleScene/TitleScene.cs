@@ -14,7 +14,7 @@ public class TitleScene : MonoBehaviour
 
 	private void Awake()
 	{
-		_startButton.onClick.AddListener(LoadPlayChange);
+		_startButton.onClick.AddListener(BeginHeroSelection);
 		_quitButton.onClick.AddListener(QuitGame);
 	}
 
@@ -23,6 +23,11 @@ public class TitleScene : MonoBehaviour
 		GameManager.Instance.DoSomething();
 
 		_heroSelecter.Initialize();
+	}
+
+	public void BeginHeroSelection()
+	{
+		_heroSelecter.OpenHeroSelectionPanel();
 	}
 
 	public void QuitGame()
