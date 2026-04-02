@@ -1,0 +1,7 @@
+using UnityEngine;
+
+[System.Serializable]
+public class GameSaveData 
+{
+    public ChallengeSave[] ChallengeSaves;
+}

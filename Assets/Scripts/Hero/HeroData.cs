@@ -22,6 +22,11 @@ public class HeroData : ScriptableObject
     [Header("----- 렌더러 -----")]
     [SerializeField] SpriteLibraryAsset _libraryAsset;       //스프라이트 라이브러리 에셋
 
+    [Header("----- 해금 -----")]
+    [SerializeField] bool _defaultUnlocked;         //기본 제공 여부
+    [SerializeField] ChallangeType _unlockChallangeType;            //해금 도전 과제 종류
+    [SerializeField] string _unlockGuide;           //해금 가이드
+
     public float BaseHp => _baseHp;
 
     public float Speed => _speed;
@@ -35,6 +40,12 @@ public class HeroData : ScriptableObject
     public Color Color => _color;
 
     public SpriteLibraryAsset LibraryAsset => _libraryAsset;
+
+    public bool DefaultUnlocked => _defaultUnlocked;
+
+    public ChallangeType UnlockChallangeType => _unlockChallangeType;
+
+    public string UnlockGuide => _unlockGuide;
 
     /// <summary>
     /// 레벨업에 필요한 경험치 양을 반환하는 함수

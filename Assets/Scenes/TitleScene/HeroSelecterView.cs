@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -16,6 +17,10 @@ public class HeroSelecterView : MonoBehaviour
     [SerializeField] TMP_Text _nameText;
     [SerializeField] Image _startWeaponIcon;
     [SerializeField] Button _button;
+
+    [SerializeField] GameObject _lockPanel;             //락 패널
+    [SerializeField] Image _lockIcon;                   //락 상태의 이미지
+    [SerializeField] TMP_Text _unlockGuideText;         //언락 조건 가이드 텍스트
 
     public event UnityAction<HeroData> OnHeroSelected;
 
@@ -37,6 +42,18 @@ public class HeroSelecterView : MonoBehaviour
         _icon.sprite = _heroData.Sprite;
         _nameText.text = _heroData.Name;
         _startWeaponIcon.sprite = _heroData.StartWeaponData.IconSprite;
+
+        _lockIcon.sprite = _heroData.Sprite;
+        _unlockGuideText.text = _heroData.UnlockGuide;
+    }
+
+    /// <summary>
+    /// 언락 여부를 설정하는 함수
+    /// </summary>
+    /// <param name="isUnlocked"></param>
+    public void SetUnlocked(bool isUnlocked)
+    {
+        _lockPanel.SetActive(!isUnlocked);
     }
 
     public void HandleClicked()

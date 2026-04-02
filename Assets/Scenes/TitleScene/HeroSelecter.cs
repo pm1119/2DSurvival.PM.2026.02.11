@@ -21,6 +21,9 @@ public class HeroSelecter : MonoBehaviour
 			{
 				_heroSelecterView[i].OnHeroSelected += HandleHeroSelected;
 				_heroSelecterView[i].Initialize(_heroDatas[i]);
+
+				//해금 설정
+				_heroSelecterView[i].SetUnlocked(_heroDatas[i].DefaultUnlocked);
 			}
 			else
 			{
@@ -56,5 +59,10 @@ public class HeroSelecter : MonoBehaviour
 		{
 			GameManager.Instance.PlaySetting.SetSelectedHero(_heroDatas[1]);
 		}
+	}
+
+	public void HandleDefaultLock()
+	{
+		
 	}
 }

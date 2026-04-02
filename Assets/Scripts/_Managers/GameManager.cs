@@ -20,9 +20,11 @@ public class GameManager : MonoBehaviour
 
     //멤버 변수
     [SerializeField] ChallangeManager _challangeManager;
-    [SerializeField] PlaySetting _playSetting; 
+    [SerializeField] PlaySetting _playSetting;
+    [SerializeField] SaveManager _saveManager;
     public ChallangeManager ChallangeManager => _challangeManager;
     public PlaySetting PlaySetting => _playSetting;
+    public SaveManager SaveManager => _saveManager;
 
 	private void Awake()
 	{
@@ -40,10 +42,19 @@ public class GameManager : MonoBehaviour
         {
             //자신 게임오브젝트 파괴
             Destroy(gameObject);
+            return;
         }
+
+        _saveManager.Initialize(_challangeManager);
+        _saveManager.Load();
 	}
 
-    public void DoSomething()
+	private void OnApplicationQuit()
+	{
+		_saveManager.Save();
+	}
+
+	public void DoSomething()
     {
         Debug.Log("전역 관리 기능 실행", gameObject);
     }

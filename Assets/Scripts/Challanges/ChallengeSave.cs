@@ -4,5 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class ChallengeSave
 {
-    public Challange[] Challanges;
+    public int Count;
+    public bool HasCleared;
 }

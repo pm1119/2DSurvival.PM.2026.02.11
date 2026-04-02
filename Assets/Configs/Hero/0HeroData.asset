@@ -21,3 +21,6 @@ MonoBehaviour:
   _startWeaponData: {fileID: 11400000, guid: 5be46adc77d783c49a8a262cd154b2fd, type: 2}
   _color: {r: 0.2392157, g: 0.7254902, b: 0.98823535, a: 1}
   _libraryAsset: {fileID: 7108339969198208228, guid: e1ffdce164f065444b3a6429263ce74d, type: 3}
+  _defaultUnlocked: 1
+  _unlockChallangeType: 0
+  _unlockGuide: "\uAE30\uBCF8 \uC81C\uACF5"

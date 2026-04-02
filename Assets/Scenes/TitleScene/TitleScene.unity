@@ -35143,6 +35143,8 @@ MonoBehaviour:
   _heroDatas:
   - {fileID: 11400000, guid: 32ee87f69cb16644ebf74894e4e7013f, type: 2}
   - {fileID: 11400000, guid: 83c907bea971f8341a0d7d8397d9a26a, type: 2}
+  - {fileID: 11400000, guid: 21760135b73617f4284581c0b8ed5db3, type: 2}
+  - {fileID: 11400000, guid: a7cd264a3d889cc4ea6c8095816634ac, type: 2}
   _selectionPanel: {fileID: 759171255}
   _heroSelecterView:
   - {fileID: 1608190279}

@@ -37,4 +37,27 @@ public class Challange
             Debug.Log($"{_type} 도전 과제 달성");
         }
     }
+
+    public ChallengeSave GetSaveData()
+    {
+        //세이브 데이터 객체 생성
+        ChallengeSave challengeSave = new ChallengeSave()
+        {
+            Count = _count,
+            HasCleared = _hasCleared,
+        };
+        return challengeSave;
+    }
+
+    /// <summary>
+    /// 세이브 데이터 로드 함수
+    /// </summary>
+    /// <param name="challengeSave"></param>
+    public void LoadFrom(ChallengeSave challengeSave)
+    {
+        if (challengeSave == null)return;
+
+        _count = challengeSave.Count;
+        _hasCleared = challengeSave.HasCleared;
+    }
 }

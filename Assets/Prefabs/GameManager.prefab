@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 207962208155497797}
   - component: {fileID: 4618088204312226230}
   - component: {fileID: 6989170027716946808}
+  - component: {fileID: 1979904785586194253}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _challangeManager: {fileID: 4618088204312226230}
   _playSetting: {fileID: 6989170027716946808}
+  _saveManager: {fileID: 1979904785586194253}
 --- !u!114 &4618088204312226230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -86,3 +88,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _selectedHero: {fileID: 11400000, guid: 32ee87f69cb16644ebf74894e4e7013f, type: 2}
+--- !u!114 &1979904785586194253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557715044561919689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbdf52a9e6cfbeb419e5b9a82d05ffa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
