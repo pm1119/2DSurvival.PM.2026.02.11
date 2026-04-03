@@ -74,8 +74,13 @@ public class ExpItem : MonoBehaviour
         //상대 콜라이더 게임오브젝트의 태그가 Player이면
 		if (collision.CompareTag("Player") == true)
         {
+            //경험치 획득
             _hero.AddExp(_expReward);
 
+            //효과음 재생
+            GameManager.Instance.SoundManager.PlaySfx(Sfx.Coin);
+
+            //제거
             Remove();
         }
 	}

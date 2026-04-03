@@ -148,6 +148,9 @@ public class Enemy : MonoBehaviour
         //1)로직 처리
         _enemyModel.TakeDamage(damage);
 
+        //효과음 재생
+        GameManager.Instance.SoundManager.PlaySfx(Sfx.Hit, transform.position);
+
         if (_enemyModel.IsAlive == false) return;
 
 		//2) 피격 애니메이션 재생

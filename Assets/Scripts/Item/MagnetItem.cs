@@ -18,6 +18,9 @@ public class MagnetItem : MonoBehaviour
 		{
 			_enemySpawner.StartMagnetEffect();
 
+			//효과음 재생
+			GameManager.Instance.SoundManager.PlaySfx(Sfx.Coin);
+
 			//풀로 되돌아가거나 파괴
 			gameObject.DestroyOrReturnPool();
 		}

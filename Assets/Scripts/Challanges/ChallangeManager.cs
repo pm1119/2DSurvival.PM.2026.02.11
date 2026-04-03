@@ -11,17 +11,17 @@ public class ChallangeManager : MonoBehaviour
 
     string _path;
 
-	private void Awake()
-	{
-		_path = $"{Application.persistentDataPath}/challange.json";
-	}
+    private void Awake()
+    {
+        _path = $"{Application.persistentDataPath}/challange.json";
+    }
 
-	/// <summary>
-	/// 도전 과제 카운트를 증가시키는 함수
-	/// </summary>
-	/// <param name="challangeType">도전 과제 종류</param>
-	/// <param name="count">카운트</param>
-	public void AddChallangeCount(ChallangeType challangeType, int count = 1)
+    /// <summary>
+    /// 도전 과제 카운트를 증가시키는 함수
+    /// </summary>
+    /// <param name="challangeType">도전 과제 종류</param>
+    /// <param name="count">카운트</param>
+    public void AddChallangeCount(ChallangeType challangeType, int count = 1)
     {
         int index = (int)challangeType;
         if (index < 0 || index >= _challanges.Length)
@@ -30,8 +30,8 @@ public class ChallangeManager : MonoBehaviour
             return;
         }
 
-		//challangeType에 맞는 도전 과제 객체 가져오기
-		Challange challange = _challanges[index];
+        //challangeType에 맞는 도전 과제 객체 가져오기
+        Challange challange = _challanges[index];
 
         challange.AddCount(count);
     }
@@ -59,5 +59,24 @@ public class ChallangeManager : MonoBehaviour
         {
             _challanges[i].LoadFrom(challengeSaves[i]);
         }
+    }
+
+    /// <summary>
+    /// 도전과제 종류에 따라 도전과제 객체를 반환하는 함수
+    /// </summary>
+    /// <param name="challangeType"></param>
+    /// <returns></returns>
+    public Challange GetChallange(ChallangeType challangeType)
+    {
+        int index = (int) challangeType;
+
+        if (index < 0 || index >= _challanges.Length)
+        {
+            Debug.LogWarning($"존재하지 않는 도전 과제입니다. Type: {challangeType}");
+            return null;
+        }
+
+        Challange challange = _challanges[index];
+        return challange;
     }
 }

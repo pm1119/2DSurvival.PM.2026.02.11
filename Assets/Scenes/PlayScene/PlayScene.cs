@@ -36,6 +36,9 @@ public class PlayScene : MonoBehaviour
 
 		//적 생성기 초기화
 		_enemySpawner.Initialize();
+
+		//스테이지 배경음악 재생
+		GameManager.Instance.SoundManager.PlayBgm(Bgm.Stage0);
 	}
 
 	/// <summary>

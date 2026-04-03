@@ -23,13 +23,28 @@ public class HeroSelecter : MonoBehaviour
 				_heroSelecterView[i].Initialize(_heroDatas[i]);
 
 				//해금 설정
-				_heroSelecterView[i].SetUnlocked(_heroDatas[i].DefaultUnlocked);
+				_heroSelecterView[i].SetUnlocked(GetIsHeroUnlocked(_heroDatas[i]));
 			}
 			else
 			{
 				_heroSelecterView[i].gameObject.SetActive(false);
 			}
 		}
+	}
+
+	/// <summary>
+	/// 히어로가 해금되어 있는지 여부를 반환하는 함수
+	/// </summary>
+	/// <param name="heroData"></param>
+	public bool GetIsHeroUnlocked(HeroData heroData)
+	{
+		if (heroData.DefaultUnlocked == true)
+			return true;
+
+		//도전과제 가져오기
+		Challange challange = 
+			GameManager.Instance.ChallangeManager.GetChallange(heroData.UnlockChallangeType);
+		return challange.HasCleared;
 	}
 
 	/// <summary>
@@ -42,6 +57,9 @@ public class HeroSelecter : MonoBehaviour
 
 	public void HandleHeroSelected(HeroData heroData)
 	{
+		//해금된 히어로가 맞는지 체크
+		if (GetIsHeroUnlocked(heroData) == false) return;
+
 		//현재 선택된 히어로 데이터를 교체
 		GameManager.Instance.PlaySetting.SetSelectedHero(heroData);
 
@@ -59,10 +77,5 @@ public class HeroSelecter : MonoBehaviour
 		{
 			GameManager.Instance.PlaySetting.SetSelectedHero(_heroDatas[1]);
 		}
-	}
-
-	public void HandleDefaultLock()
-	{
-		
 	}
 }

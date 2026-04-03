@@ -22,9 +22,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] ChallangeManager _challangeManager;
     [SerializeField] PlaySetting _playSetting;
     [SerializeField] SaveManager _saveManager;
+    [SerializeField] SoundManager _soundManager;
     public ChallangeManager ChallangeManager => _challangeManager;
     public PlaySetting PlaySetting => _playSetting;
     public SaveManager SaveManager => _saveManager;
+    public SoundManager SoundManager => _soundManager;
 
 	private void Awake()
 	{
