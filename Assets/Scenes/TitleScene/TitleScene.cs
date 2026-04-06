@@ -10,6 +10,7 @@ public class TitleScene : MonoBehaviour
     [Header("----- ÄÄÆ÷³ÍÆ® -----")]
     [SerializeField] Button _startButton;
     [SerializeField] Button _quitButton;
+	[SerializeField] Button _quitSetting;
 	[SerializeField] Button _settingButton;
 	[SerializeField] HeroSelecter _heroSelecter;
 	[SerializeField] GameObject _settingPanel;
@@ -20,6 +21,7 @@ public class TitleScene : MonoBehaviour
 		_startButton.onClick.AddListener(BeginHeroSelection);
 		_quitButton.onClick.AddListener(QuitGame);
 		_settingButton.onClick.AddListener(BeginSetting);
+		_quitSetting.onClick.AddListener(EndSetting);
 	}
 
 	private void Start()
@@ -41,6 +43,11 @@ public class TitleScene : MonoBehaviour
 	public void BeginSetting()
 	{
 		_settingPanel.SetActive(true);
+	}
+
+	public void EndSetting()
+	{
+		_settingPanel.SetActive(false);
 	}
 
 	public void QuitGame()

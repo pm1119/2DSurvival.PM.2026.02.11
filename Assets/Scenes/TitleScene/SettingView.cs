@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SettingView : MonoBehaviour
@@ -7,13 +8,17 @@ public class SettingView : MonoBehaviour
     [SerializeField] Slider _bgmBar;
     [SerializeField] Slider _sfxBar;
 
-    public void UpdateBgmVolume(float volume)
+    public event UnityAction<Slider> OnBgmVolume;
+
+    public event UnityAction<Slider> OnSfxVolume;
+
+	public void UpdateBgmVolume()
     {
-        _bgmBar.value = volume;
+        OnBgmVolume?.Invoke(_bgmBar);
     }
 
-    public void UpdateSfxVolume(float volume)
+    public void UpdateSfxVolume()
     {
-        _sfxBar.value = volume;
+        OnSfxVolume?.Invoke(_sfxBar);
     }
 }

@@ -51,6 +51,9 @@ public class EnemySpawner : MonoBehaviour
 
 	public void Initialize()
     {
+        //프리팹 리소스 동적 로드
+        LoadPrefabs();
+
         _clear.SetActive(false);
 
         //자석 아이템 풀 생성
@@ -73,10 +76,18 @@ public class EnemySpawner : MonoBehaviour
 		OnRemainingTimeChanged?.Invoke(_playTime);
     }
 
-    /// <summary>
-    /// 자석 아이템 풀을 만드는 함수
-    /// </summary>
-    void CreateMagnetItemPool()
+	void LoadPrefabs()
+	{
+		//Resources 폴더 안에 있는
+		//"Prefab/MagnetItem" 경로의 에셋을 
+		//MagnetItem 타입(자료형)으로 로드
+		_magnetItemPrefab = Resources.Load<MagnetItem>("Prefab/MagnetItem");
+	}
+
+	/// <summary>
+	/// 자석 아이템 풀을 만드는 함수
+	/// </summary>
+	void CreateMagnetItemPool()
     {
         //풀의 부모 게임오브젝트 생성
         GameObject parent = new GameObject("MagnetItem Pool");

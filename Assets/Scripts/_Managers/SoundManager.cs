@@ -47,6 +47,7 @@ public class SoundManager : MonoBehaviour
 	private void Awake()
 	{
 		LoadSettings();
+        //_settingView.Initialize(BgmVolume, SfxVolume);
 	}
 
 	/// <summary>

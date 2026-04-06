@@ -34,7 +34,7 @@ public class SaveManager : MonoBehaviour
 		File.WriteAllText(_gameSavePath, json);
 
 		//폴더 열기
-		Application.OpenURL(Application.persistentDataPath);
+		//Application.OpenURL(Application.persistentDataPath);
 	}
 
 	public void Load()

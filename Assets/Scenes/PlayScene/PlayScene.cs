@@ -7,7 +7,7 @@ public class PlayScene : MonoBehaviour
 {
     [Header("----- 컴포넌트 -----")]
     [SerializeField] Hero _hero;                    //플레이어 캐릭터
-    [SerializeField] PlayerInputHandler _inputHandler;    //입력 핸들러
+    [SerializeField] InputHandler _inputHandler;    //입력 핸들러
 	[SerializeField] EnemySpawner _enemySpawner;    //적 생성기
 	[SerializeField] StatusView _statusView;
 
