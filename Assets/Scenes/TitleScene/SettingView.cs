@@ -4,21 +4,23 @@ using UnityEngine.UI;
 
 public class SettingView : MonoBehaviour
 {
+    SoundManager _soundManager;
+
     [Header("----- ÄÄÆ÷³ÍÆ® -----")]
     [SerializeField] Slider _bgmBar;
     [SerializeField] Slider _sfxBar;
 
-    public event UnityAction<Slider> OnBgmVolume;
+	private void Start()
+	{
+        _soundManager = GameManager.Instance.SoundManager;
+	}
 
-    public event UnityAction<Slider> OnSfxVolume;
-
-	public void UpdateBgmVolume()
+	public void UpdateVolume(float bgm, float sfx)
     {
-        OnBgmVolume?.Invoke(_bgmBar);
-    }
+        _bgmBar.value = bgm;
+        _sfxBar.value = sfx;
 
-    public void UpdateSfxVolume()
-    {
-        OnSfxVolume?.Invoke(_sfxBar);
-    }
+        _soundManager.SetBgmVolume(_bgmBar.value);
+        _soundManager.SetSfxVolume(_sfxBar.value);
+	}
 }

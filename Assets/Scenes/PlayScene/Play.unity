@@ -198,6 +198,8 @@ MonoBehaviour:
   _inputHandler: {fileID: 587383938}
   _enemySpawner: {fileID: 1893141310}
   _statusView: {fileID: 7422667546939988417}
+  _pcInput: {fileID: 1717966546}
+  _mobileInput: {fileID: 587383938}
 --- !u!1 &73224166
 GameObject:
   m_ObjectHideFlags: 0
@@ -37142,15 +37144,15 @@ MonoBehaviour:
   _hero: {fileID: 1530154083}
   _heroModel: {fileID: 1530154088}
   _enemyPrefabs:
-  - {fileID: 3973251100775325545, guid: ccb8215fb4eda3b4c81b318151e88524, type: 3}
-  - {fileID: 3815734014136340430, guid: e7b4ae13d9e16f94fbfdb05358312bc5, type: 3}
-  - {fileID: 3186414267893165432, guid: 6b46b74ade02f124b88db2e8c7f442e7, type: 3}
-  - {fileID: 8982545360510601823, guid: 450e943317f1a60468b71994ee1032b8, type: 3}
-  - {fileID: 2421252746640133104, guid: a3d3d531a7304ca4c9b4d722e408860d, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _expItemPrefabs:
-  - {fileID: 4572947229975138250, guid: 72197ba65bdfd27489f4dc7228bc8dfd, type: 3}
-  - {fileID: 8641958260357519674, guid: a80bc947a0bfe4342848a3a0bdb42763, type: 3}
-  - {fileID: 65809281677102979, guid: 5aa2094f40311a6468f315be151762cf, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _magnetItemPrefab: {fileID: 0}
   _healthItemPrefab: {fileID: 1205796951291082771, guid: e051f4969bae36e4d9ec09e5977cc7d4, type: 3}
   _clear: {fileID: 1041178694}

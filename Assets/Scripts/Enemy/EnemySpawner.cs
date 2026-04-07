@@ -76,33 +76,37 @@ public class EnemySpawner : MonoBehaviour
 		OnRemainingTimeChanged?.Invoke(_playTime);
     }
 
-	void LoadPrefabs()
-	{
-		//우니티 에셋 동적 로드 방식
-		//1. Resources.Load - 쉽고 간편
-		//2. AssetBundle 
-		//3. Addressables - 최근 트렌드
+    void LoadPrefabs()
+    {
+        //우니티 에셋 동적 로드 방식
+        //1. Resources.Load - 쉽고 간편
+        //2. AssetBundle 
+        //3. Addressables - 최근 트렌드
 
-		//Resources.Load 방식
-		//1) 동적 로딩
-		//씬이 로드될 때 모든 객체를 한번에 로드하는 것이 아니라 개발자가 원하는 타이밍에 로드
-		//이를 통해 메모리 관리
+        //Resources.Load 방식
+        //1) 동적 로딩
+        //씬이 로드될 때 모든 객체를 한번에 로드하는 것이 아니라 개발자가 원하는 타이밍에 로드
+        //이를 통해 메모리 관리
 
-		//2) 데니터 기반 설계
-		//문자열과 같은 데이터로 리소스 선택 가능
-		//ex. 스테이지별로 다른 적 프리팹 사용
+        //2) 데니터 기반 설계
+        //문자열과 같은 데이터로 리소스 선택 가능
+        //ex. 스테이지별로 다른 적 프리팹 사용
 
-		//3) Resources.Load 단점
-		//Resources 폴더 안에 있는 모든 에셋은 빌드 시 자동으로 포함(빌드 용량 증가)
-		//오남용 시 메모리 누수 우려
-		//소구모 프로젝트, 프로토타입, 개인 포트폴리오에는 쓸 수 있음
-		//하지만 나의 리소스 관리 능력을 어필하고 싶을 경우 Addressables 사용 추천
+        //3) Resources.Load 단점
+        //Resources 폴더 안에 있는 모든 에셋은 빌드 시 자동으로 포함(빌드 용량 증가)
+        //오남용 시 메모리 누수 우려
+        //소구모 프로젝트, 프로토타입, 개인 포트폴리오에는 쓸 수 있음
+        //하지만 나의 리소스 관리 능력을 어필하고 싶을 경우 Addressables 사용 추천
 
-		//Resources 폴더 안에 있는
-		//"Prefab/MagnetItem" 경로의 에셋을 
-		//MagnetItem 타입(자료형)으로 로드
-		_magnetItemPrefab = Resources.Load<MagnetItem>("Prefab/MagnetItem");
-	}
+        //Resources 폴더 안에 있는
+        //"Prefab/MagnetItem" 경로의 에셋을 
+        //MagnetItem 타입(자료형)으로 로드
+        _magnetItemPrefab = Resources.Load<MagnetItem>("Prefab/MagnetItem");
+
+        _enemyPrefabs = Resources.LoadAll<Enemy>("Prefab/Enemy");
+
+        _expItemPrefabs = Resources.LoadAll<ExpItem>("Prefab/Item");
+    }
 
 	/// <summary>
 	/// 자석 아이템 풀을 만드는 함수
