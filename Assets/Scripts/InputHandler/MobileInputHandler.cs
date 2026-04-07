@@ -24,15 +24,44 @@ public class MobileInputHandler : InputHandler, IPointerDownHandler, IPointerUpH
 
 	public override event UnityAction<Vector2> OnMoveInput;
 
+	Vector2 _defaultBackgroundPos;
+
+	private void Awake()
+	{
+		_defaultBackgroundPos = _background.anchoredPosition;
+
+		ApplyMode();
+		ResetJoyStick();
+	}
+
 	private void Update()
 	{
 		OnMoveInput?.Invoke(_inputVector);
+	}
+
+	void ApplyMode()
+	{
+		switch(_stickMode)
+		{
+			case JoyStickMode.Fixed:
+				_background.anchoredPosition = _defaultBackgroundPos;
+				_background.gameObject.SetActive(true);
+				break;
+			case JoyStickMode.Floating:
+				_background.gameObject.SetActive(false);
+				break;
+		}
 	}
 
 	public void ResetJoyStick()
 	{
 		_inputVector = Vector2.zero;
 		_handle.anchoredPosition = Vector2.zero;
+
+		if (_stickMode == JoyStickMode.Floating)
+		{
+			_background.anchoredPosition = _defaultBackgroundPos;
+		}
 	}
 
 	void UpdateJoyStick(PointerEventData eventData)
@@ -63,12 +92,21 @@ public class MobileInputHandler : InputHandler, IPointerDownHandler, IPointerUpH
 	//포인터를 눌렀을 때
 	public void OnPointerDown(PointerEventData eventData)
 	{
-		UpdateJoyStick(eventData);
 		if (_stickMode == JoyStickMode.Floating)
 		{
-			_background.position = eventData.position;
+			Vector2 localPoint;
+
+			if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+				_touchArea, eventData.position,
+				eventData.pressEventCamera, out localPoint) == true)
+			{
+				_background.anchoredPosition = localPoint;
+			}
+
 			_background.gameObject.SetActive(true);
 		}
+
+		UpdateJoyStick(eventData);
 	}
 
 	//포인터를 뗐을 때

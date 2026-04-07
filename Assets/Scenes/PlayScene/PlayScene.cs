@@ -11,8 +11,14 @@ public class PlayScene : MonoBehaviour
 	[SerializeField] EnemySpawner _enemySpawner;    //적 생성기
 	[SerializeField] StatusView _statusView;
 
+	[Header("----- 인풋 핸들러 -----")]
+	[SerializeField] InputHandler _pcInput;
+	[SerializeField] InputHandler _mobileInput;
+
 	private void Awake()
 	{
+		CheckInputHandler();
+
 		//이동 입력 이벤트 구독
 		_inputHandler.OnMoveInput += HandleMoveInput;
 
@@ -21,6 +27,21 @@ public class PlayScene : MonoBehaviour
 
 		//시간 변경 이벤트 구독
 		_enemySpawner.OnRemainingTimeChanged += _statusView.UpdateRemainingTime;
+	}
+
+	void CheckInputHandler()
+	{
+		//현재 구동 중인 환경이 모바일일 경우
+		if (Application.isMobilePlatform == true)
+		{
+			_pcInput.gameObject.SetActive(false);
+			_inputHandler = _mobileInput;
+		}
+		else
+		{
+			_pcInput.gameObject.SetActive(true);
+			_inputHandler = _pcInput;
+		}
 	}
 
 	private void Start()
