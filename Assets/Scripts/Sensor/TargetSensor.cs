@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 /// <summary>
@@ -24,15 +25,16 @@ public class TargetSensor : MonoBehaviour
         {
             Transform target = _collider2Ds[0].transform;
             float minDist = Vector3.Distance(transform.position, target.position);
-            for (int i = 1; i < _collider2Ds.Length; i++)
-            {
-                float dist = Vector3.Distance(transform.position, _collider2Ds[i].transform.position);
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    target = _collider2Ds[i].transform;
-                }
-            }
+            target = _collider2Ds.OrderBy(t => Vector3.Distance(transform.position, t.transform.position)).FirstOrDefault().transform;
+            //for (int i = 1; i < _collider2Ds.Length; i++)
+            //{
+            //    float dist = Vector3.Distance(transform.position, _collider2Ds[i].transform.position);
+            //    if (dist < minDist)
+            //    {
+            //        minDist = dist;
+            //        target = _collider2Ds[i].transform;
+            //    }
+            //}
             return target;  
         }
         return null;
