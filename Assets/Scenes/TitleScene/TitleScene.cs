@@ -14,7 +14,6 @@ public class TitleScene : MonoBehaviour
 	[SerializeField] Button _settingButton;
 	[SerializeField] HeroSelecter _heroSelecter;
 	[SerializeField] GameObject _settingPanel;
-	[SerializeField] SettingView _settingView;
 
 	private void Awake()
 	{

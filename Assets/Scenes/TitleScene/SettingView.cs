@@ -1,26 +1,60 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class SettingView : MonoBehaviour
+public class SettingCtrl : MonoBehaviour
 {
-    SoundManager _soundManager;
+	SoundManager _soundManager;
 
-    [Header("----- ÄÄÆ÷³ÍÆ® -----")]
-    [SerializeField] Slider _bgmBar;
-    [SerializeField] Slider _sfxBar;
+	[Header("----- ÄÄÆ÷³ÍÆ® -----")]
+	[SerializeField] GameObject _settingPanel;
+	[SerializeField] Toggle _bgmToggle;
+	[SerializeField] Toggle _sfxToggle;
+	[SerializeField] Slider _bgmSlider;
+	[SerializeField] Slider _sfxSlider;
+
+	private void Awake()
+	{
+		_soundManager = GameManager.Instance.SoundManager;
+
+		_bgmToggle.onValueChanged.AddListener(SetBgmOn);
+		_sfxToggle.onValueChanged.AddListener(SetSfxOn);
+		_bgmSlider.onValueChanged.AddListener(SetBgmVolume);
+		_sfxSlider.onValueChanged.AddListener(SetSfxVolume);
+	}
 
 	private void Start()
 	{
-        _soundManager = GameManager.Instance.SoundManager;
+		UpdateViews();
 	}
 
-	public void UpdateVolume(float bgm, float sfx)
-    {
-        _bgmBar.value = bgm;
-        _sfxBar.value = sfx;
+	public void UpdateViews()
+	{
+		_bgmToggle.SetIsOnWithoutNotify(!_soundManager.IsBgmMuted);
+		_sfxToggle.SetIsOnWithoutNotify(!_soundManager.IsSfxMuted);
+		_bgmSlider.SetValueWithoutNotify(_soundManager.BgmVolume);
+		_sfxSlider.SetValueWithoutNotify(_soundManager.SfxVolume);
+	}
 
-        _soundManager.SetBgmVolume(_bgmBar.value);
-        _soundManager.SetSfxVolume(_sfxBar.value);
+	public void OpenSettingPanel()
+	{
+		_settingPanel.SetActive(true);
+	}
+
+	public void SetBgmOn(bool isOn)
+	{
+		_soundManager.SetBgmMute(!isOn);
+	}
+	public void SetSfxOn(bool isOn)
+	{
+		_soundManager.SetSfxMute(!isOn);
+	}
+
+	public void SetBgmVolume(float volume)
+	{
+		_soundManager.SetBgmVolume(volume);
+	}
+	public void SetSfxVolume(float volume)
+	{
+		_soundManager.SetSfxVolume(volume);
 	}
 }
